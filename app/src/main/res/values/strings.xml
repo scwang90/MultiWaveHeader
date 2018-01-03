@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MultiWaveHeader</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+
+    <string name="login_forget">忘记密码？</string>
+    <string name="login_login">登 录</string>
+    <string name="login_tourist_mode">游客模式</string>
+    <string name="login_verify_mode">验证码模式</string>
+    <string name="login_password">请输入密码</string>
+    <string name="login_password_mode">密码模式</string>
+    <string name="login_sms">获取验证码</string>
+    <string name="login_username">输入手机号码</string>
+
+</resources>

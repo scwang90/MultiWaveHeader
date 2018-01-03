@@ -1,0 +1,107 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.Wrap">
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="AppTheme.Wrap.Wrap">
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    
+    <style name="AppTheme.Divison">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/division_line</item>
+        <item name="android:background">@color/colorDivison</item>
+        <item name="android:divider">@color/colorDivison</item>
+        <item name="android:dividerHeight">@dimen/division_line</item>
+    </style>
+
+    <style name="AppTheme.Divison.Vertical">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">@dimen/division_line</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:background">@color/colorDivison</item>
+    </style>
+
+    <style name="AppTheme.Label" parent="AppTheme.Wrap.Wrap">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/textsize_content</item>
+        <item name="android:textColor">@color/colorTextContent</item>
+    </style>
+
+    <style name="AppTheme.Label.Layout">
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">@dimen/padding_common_v</item>
+        <item name="android:paddingBottom">@dimen/padding_common_v</item>
+        <item name="android:paddingLeft">@dimen/padding_common_h</item>
+        <item name="android:paddingRight">@dimen/padding_common_h</item>
+    </style>
+
+    <style name="AppTheme.Label.Title">
+        <item name="android:textColor">@color/colorTextTitle</item>
+        <item name="android:textSize">@dimen/textsize_title</item>
+    </style>
+
+    <style name="AppTheme.Label.Title.Large">
+        <item name="android:textSize">@dimen/textsize_titlelarge</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AppTheme.Label.Title.Small">
+        <item name="android:textSize">@dimen/textsize_titlesmall</item>
+    </style>
+
+    <style name="AppTheme.Label.Small">
+        <item name="android:textSize">@dimen/textsize_small</item>
+    </style>
+
+    <style name="AppTheme.Label.Min">
+        <item name="android:textSize">@dimen/textsize_min</item>
+    </style>
+
+    <style name="AppTheme.Label.Discription">
+        <item name="android:gravity">top</item>
+        <item name="android:lineSpacingExtra">5dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">@dimen/textsize_content</item>
+        <item name="android:singleLine">false</item>
+    </style>
+
+    <style name="AppTheme.Label.Assistant">
+        <item name="android:textColor">@color/colorTextAssistant</item>
+    </style>
+
+    <style name="AppTheme.Label.Gray">
+        <item name="android:textColor">@color/colorTextGray</item>
+    </style>
+
+    <style name="AppTheme.Button" parent="AppTheme.Wrap.Wrap">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/textsize_button</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/primary_button</item>
+    </style>
+
+    <style name="AppTheme.Button.Primary">
+        <item name="android:background">@drawable/primary_button</item>
+    </style>
+
+</resources>
