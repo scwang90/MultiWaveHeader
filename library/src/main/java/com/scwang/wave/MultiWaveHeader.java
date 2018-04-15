@@ -31,6 +31,7 @@ public class MultiWaveHeader extends ViewGroup {
     private int mWaveHeight;
     private int mStartColor;
     private int mCloseColor;
+    private float mVelocity;
     private float mColorAlpha;
     private float mProgress;
     private long mLastTime = 0;
@@ -55,6 +56,7 @@ public class MultiWaveHeader extends ViewGroup {
         mCloseColor = ta.getColor(R.styleable.MultiWaveHeader_mwhCloseColor, 0xFF40B5FF);
         mColorAlpha = ta.getFloat(R.styleable.MultiWaveHeader_mwhColorAlpha, 0.3f);
         mProgress = ta.getFloat(R.styleable.MultiWaveHeader_mwhProgress, 1f);
+        mVelocity = ta.getFloat(R.styleable.MultiWaveHeader_mwhVelocity, 1f);
 
         if (ta.hasValue(R.styleable.MultiWaveHeader_mwhWaves)) {
             setTag(ta.getString(R.styleable.MultiWaveHeader_mwhWaves));
@@ -142,7 +144,7 @@ public class MultiWaveHeader extends ViewGroup {
                 mMatrix.reset();
                 canvas.save();
                 if (mLastTime > 0 && wave.velocity != 0) {
-                    int offsetX = (wave.offsetX + (int) (wave.velocity * (thisTime - mLastTime) / 1000f));
+                    int offsetX = (wave.offsetX + (int) (wave.velocity * mVelocity * (thisTime - mLastTime) / 1000f));
                     if (wave.velocity > 0) {
                         offsetX %= wave.width / 2;
                     } else {
@@ -167,15 +169,19 @@ public class MultiWaveHeader extends ViewGroup {
         invalidate();
     }
 
+    public float getVelocity() {
+        return mVelocity;
+    }
+
+    public void setVelocity(float velocity) {
+        this.mVelocity = velocity;
+    }
+
     public float getProgress() {
         return mProgress;
     }
 
     public void setProgress(float progress) {
         this.mProgress = progress;
-//        if (!mltWave.isEmpty()) {
-//            View thisView = this;
-//            updateWavePath(thisView.getWidth(),(int)(thisView.getHeight() * mProgress));
-//        }
     }
 }

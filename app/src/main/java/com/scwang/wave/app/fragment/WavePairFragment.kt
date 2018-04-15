@@ -26,16 +26,22 @@ class WavePairFragment : Fragment(), SeekBar.OnSeekBarChangeListener {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        seekBar.setOnSeekBarChangeListener(this)
+        seeVelocity.setOnSeekBarChangeListener(this)
+        seekProgress.setOnSeekBarChangeListener(this)
     }
 
     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-        multiWaveHeader.progress = 1f * progress / 100
+        if (seekBar == seekProgress) {
+            multiWaveHeader.progress = 1f * progress / 100
+        } else if (seekBar == seeVelocity) {
+            multiWaveHeader.velocity = 1f * progress / 10
+        }
     }
 
     override fun onStartTrackingTouch(seekBar: SeekBar?) {
     }
 
     override fun onStopTrackingTouch(seekBar: SeekBar?) {
+
     }
 }
