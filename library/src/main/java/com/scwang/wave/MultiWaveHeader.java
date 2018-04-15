@@ -94,7 +94,7 @@ public class MultiWaveHeader extends ViewGroup {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        updateWavePath(w,(int)(h * mProgress));
+        updateWavePath(w, h);
     }
 
     private void updateWavePath(int w, int h) {
@@ -115,6 +115,11 @@ public class MultiWaveHeader extends ViewGroup {
             }
         } else if (getTag() instanceof String) {
             String[] waves = getTag().toString().split("\\s+");
+            if ("-1".equals(getTag())) {
+                waves = "70,25,1.4,1.4,-26\n100,5,1.4,1.2,15\n420,0,1.15,1,-10\n520,10,1.7,1.5,20\n220,0,1,1,-15".split("\\s+");
+            } else if ("-2".equals(getTag())) {
+                waves = "0,0,1,1,100\n0,0,1,1,-90".split("\\s+");
+            }
             for (String twave : waves) {
                 String[] args = twave.split ("\\s*,\\s*");
                 if (args.length == 5) {
@@ -130,6 +135,8 @@ public class MultiWaveHeader extends ViewGroup {
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         if (mltWave.size() > 0) {
+            View thisView = this;
+            int height = thisView.getHeight();
             long thisTime = System.currentTimeMillis();
             for (Wave wave : mltWave) {
                 mMatrix.reset();
@@ -144,10 +151,10 @@ public class MultiWaveHeader extends ViewGroup {
                         }
                     }
                     mMatrix.setTranslate(offsetX, 0);
-                    canvas.translate(-offsetX, -wave.offsetY);
+                    canvas.translate(-offsetX, -wave.offsetY - (1 - mProgress) * height);
                 } else{
                     mMatrix.setTranslate(wave.offsetX, 0);
-                    canvas.translate(-wave.offsetX, -wave.offsetY);
+                    canvas.translate(-wave.offsetX, -wave.offsetY - (1 - mProgress) * height);
                 }
                 mPaint.getShader().setLocalMatrix(mMatrix);
                 canvas.drawPath(wave.path, mPaint);
@@ -156,8 +163,8 @@ public class MultiWaveHeader extends ViewGroup {
             if (mLastTime == 0) {
                 mLastTime = thisTime;
             }
-            invalidate();
         }
+        invalidate();
     }
 
     public float getProgress() {
@@ -166,9 +173,9 @@ public class MultiWaveHeader extends ViewGroup {
 
     public void setProgress(float progress) {
         this.mProgress = progress;
-        if (!mltWave.isEmpty()) {
-            View thisView = this;
-            updateWavePath(thisView.getWidth(),(int)(thisView.getHeight() * mProgress));
-        }
+//        if (!mltWave.isEmpty()) {
+//            View thisView = this;
+//            updateWavePath(thisView.getWidth(),(int)(thisView.getHeight() * mProgress));
+//        }
     }
 }

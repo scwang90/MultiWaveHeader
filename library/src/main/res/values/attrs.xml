@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <attr name="mwhWaveHeight" format="dimension"/>
+    <attr name="mwhWaves" format="string|enum">
+        <enum name="MultiWave" value="-1"/>
+        <enum name="PairWave" value="-2"/>
+    </attr>
     <declare-styleable name="MultiWaveHeader">
-        <attr name="mwhWaveHeight"/>
+        <attr name="mwhWaveHeight" format="dimension"/>
         <attr name="mwhStartColor" format="color"/>
         <attr name="mwhCloseColor" format="color"/>
         <attr name="mwhColorAlpha" format="fraction|float"/>
         <attr name="mwhProgress" format="fraction|float"/>
-        <attr name="mwhWaves" format="string"/>
+        <attr name="mwhWaves"/>
     </declare-styleable>
 
     <declare-styleable name="Wave">
