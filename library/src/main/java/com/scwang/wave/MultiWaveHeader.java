@@ -32,6 +32,7 @@ public class MultiWaveHeader extends ViewGroup {
     private int mStartColor;
     private int mCloseColor;
     private float mColorAlpha;
+    private float mProgress;
     private long mLastTime = 0;
 
     public MultiWaveHeader(Context context) {
@@ -53,6 +54,7 @@ public class MultiWaveHeader extends ViewGroup {
         mStartColor = ta.getColor(R.styleable.MultiWaveHeader_mwhStartColor, 0xff1372CF);
         mCloseColor = ta.getColor(R.styleable.MultiWaveHeader_mwhCloseColor, 0xFF40B5FF);
         mColorAlpha = ta.getFloat(R.styleable.MultiWaveHeader_mwhColorAlpha, 0.3f);
+        mProgress = ta.getFloat(R.styleable.MultiWaveHeader_mwhProgress, 1f);
 
         if (ta.hasValue(R.styleable.MultiWaveHeader_mwhWaves)) {
             setTag(ta.getString(R.styleable.MultiWaveHeader_mwhWaves));
@@ -92,7 +94,7 @@ public class MultiWaveHeader extends ViewGroup {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        updateWavePath(w,h);
+        updateWavePath(w,(int)(h * mProgress));
     }
 
     private void updateWavePath(int w, int h) {
@@ -158,4 +160,15 @@ public class MultiWaveHeader extends ViewGroup {
         }
     }
 
+    public float getProgress() {
+        return mProgress;
+    }
+
+    public void setProgress(float progress) {
+        this.mProgress = progress;
+        if (!mltWave.isEmpty()) {
+            View thisView = this;
+            updateWavePath(thisView.getWidth(),(int)(thisView.getHeight() * mProgress));
+        }
+    }
 }

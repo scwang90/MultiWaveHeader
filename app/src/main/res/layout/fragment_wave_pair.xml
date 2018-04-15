@@ -10,19 +10,35 @@
     <android.support.v7.widget.Toolbar style="@style/AppTheme.Toolbar"
         app:title="@string/fragment_wave_pair"/>
 
-    <com.scwang.wave.MultiWaveHeader
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="150dp"
-        app:mwhColorAlpha="0.7"
-        app:mwhWaveHeight="20dp"
-        android:scaleY="-1">
-        <com.scwang.wave.Wave style="@style/MultiWaveHeader.Wave"
-            app:mwVelocity="100dp"
-            app:mwScaleX="1.2"/>
-        <com.scwang.wave.Wave style="@style/MultiWaveHeader.Wave"
-            app:mwOffsetX="100dp"
-            app:mwVelocity="-90dp"/>
-    </com.scwang.wave.MultiWaveHeader>
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+
+        <com.scwang.wave.MultiWaveHeader
+            android:id="@+id/multiWaveHeader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:mwhColorAlpha="0.7"
+            app:mwhWaveHeight="20dp"
+            app:mwhProgress="0.75"
+            android:scaleY="-1">
+            <com.scwang.wave.Wave style="@style/MultiWaveHeader.Wave"
+                app:mwVelocity="100dp"
+                app:mwScaleX="1.2"/>
+            <com.scwang.wave.Wave style="@style/MultiWaveHeader.Wave"
+                app:mwOffsetX="100dp"
+                app:mwVelocity="-90dp"/>
+        </com.scwang.wave.MultiWaveHeader>
+
+        <SeekBar style="@style/Widget.AppCompat.SeekBar"
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="50dp"
+            android:max="100"
+            android:progress="70" />
+    </FrameLayout>
 
 </LinearLayout>

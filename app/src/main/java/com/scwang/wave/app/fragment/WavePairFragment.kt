@@ -6,14 +6,16 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 
 import com.scwang.wave.app.R
+import kotlinx.android.synthetic.main.fragment_wave_pair.*
 
 /**
  * A simple [Fragment] subclass.
  *
  */
-class WavePairFragment : Fragment() {
+class WavePairFragment : Fragment(), SeekBar.OnSeekBarChangeListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -21,4 +23,19 @@ class WavePairFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_wave_pair, container, false)
     }
 
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        seekBar.setOnSeekBarChangeListener(this)
+    }
+
+    override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+        multiWaveHeader.progress = 1f * progress / 100
+    }
+
+    override fun onStartTrackingTouch(seekBar: SeekBar?) {
+    }
+
+    override fun onStopTrackingTouch(seekBar: SeekBar?) {
+    }
 }
