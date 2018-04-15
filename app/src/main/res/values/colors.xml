@@ -27,7 +27,7 @@
 
     <color name="colorBackgroud">#FFFFFF</color>
     <color name="colorBackgroudDark">#f2f2f2</color>
-    <color name="colorDivison">#dedede</color>
+    <color name="colorDivision">#dedede</color>
 
     <color name="colorTextTitle">#333333</color>
     <color name="colorTextContent">#444444</color>

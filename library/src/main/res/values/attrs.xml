@@ -6,7 +6,7 @@
         <attr name="mwhWaveHeight"/>
         <attr name="mwhStartColor" format="color"/>
         <attr name="mwhCloseColor" format="color"/>
-        <attr name="mwhAlphaColor" format="fraction|float"/>
+        <attr name="mwhColorAlpha" format="fraction|float"/>
         <attr name="mwhWaves" format="string"/>
     </declare-styleable>
 

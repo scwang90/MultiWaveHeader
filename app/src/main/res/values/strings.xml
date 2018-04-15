@@ -14,4 +14,8 @@
     <string name="login_sms">获取验证码</string>
     <string name="login_username">输入手机号码</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_wave_pair">通用水波对儿</string>
+
 </resources>

@@ -13,7 +13,7 @@
         android:layout_height="200dp"
         app:mwhStartColor="@color/colorPrimary"
         app:mwhCloseColor="#31AFFE"
-        app:mwhAlphaColor="0.45"
+        app:mwhColorAlpha="0.45"
         android:tag="
         70,25,1.4,1.4,-26
         100,5,1.4,1.2,15
@@ -84,7 +84,7 @@
         android:textSize="@dimen/textsize_content"
         tools:text="13828416860" />
 
-    <View style="@style/AppTheme.Divison"
+    <View style="@style/AppTheme.Division"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="2dp"
@@ -109,7 +109,7 @@
         android:hint="@string/login_password"
         android:inputType="textPassword" />
 
-    <View style="@style/AppTheme.Divison"
+    <View style="@style/AppTheme.Division"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="2dp"
@@ -176,7 +176,7 @@
             android:gravity="center_horizontal"
             android:text="@string/login_tourist_mode"
             android:background="?attr/selectableItemBackgroundBorderless"/>
-        <View style="@style/AppTheme.Divison.Vertical"
+        <View style="@style/AppTheme.Division.Vertical"
             android:layout_height="30dp"
             android:layout_marginBottom="12dp"/>
         <TextView style="@style/AppTheme.Label.Assistant"

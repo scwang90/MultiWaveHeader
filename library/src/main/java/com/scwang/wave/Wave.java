@@ -67,7 +67,7 @@ class Wave extends View {
 
 //        startColor = ta.getColor(R.styleable.Wave_mwhStartColor, 0);
 //        closeColor = ta.getColor(R.styleable.Wave_mwhCloseColor, 0);
-//        alpha = ta.getFloat(R.styleable.Wave_mwhAlphaColor, 0f);
+//        alpha = ta.getFloat(R.styleable.Wave_mwhColorAlpha, 0f);
         scaleX = ta.getFloat(R.styleable.Wave_mwScaleX, 1);
         scaleY = ta.getFloat(R.styleable.Wave_mwScaleY, 1);
         offsetX = ta.getDimensionPixelOffset(R.styleable.Wave_mwOffsetX, 0);

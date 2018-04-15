@@ -31,7 +31,7 @@ public class MultiWaveHeader extends ViewGroup {
     private int mWaveHeight;
     private int mStartColor;
     private int mCloseColor;
-    private float mAlphaColor;
+    private float mColorAlpha;
     private long mLastTime = 0;
 
     public MultiWaveHeader(Context context) {
@@ -52,7 +52,7 @@ public class MultiWaveHeader extends ViewGroup {
         mWaveHeight = ta.getDimensionPixelOffset(R.styleable.MultiWaveHeader_mwhWaveHeight, Util.dp2px(50));
         mStartColor = ta.getColor(R.styleable.MultiWaveHeader_mwhStartColor, 0xff1372CF);
         mCloseColor = ta.getColor(R.styleable.MultiWaveHeader_mwhCloseColor, 0xFF40B5FF);
-        mAlphaColor = ta.getFloat(R.styleable.MultiWaveHeader_mwhAlphaColor, 0.3f);
+        mColorAlpha = ta.getFloat(R.styleable.MultiWaveHeader_mwhColorAlpha, 0.3f);
 
         if (ta.hasValue(R.styleable.MultiWaveHeader_mwhWaves)) {
             setTag(ta.getString(R.styleable.MultiWaveHeader_mwhWaves));
@@ -98,8 +98,8 @@ public class MultiWaveHeader extends ViewGroup {
     private void updateWavePath(int w, int h) {
         int waveHeight = mWaveHeight;
 
-        int startColor = ColorUtils.setAlphaComponent(mStartColor, (int)(mAlphaColor*255));
-        int closeColor = ColorUtils.setAlphaComponent(mCloseColor, (int)(mAlphaColor*255));
+        int startColor = ColorUtils.setAlphaComponent(mStartColor, (int)(mColorAlpha*255));
+        int closeColor = ColorUtils.setAlphaComponent(mCloseColor, (int)(mColorAlpha*255));
         mPaint.setShader(new LinearGradient(0, 0, w, w, startColor, closeColor, Shader.TileMode.CLAMP));
 
         mltWave.clear();
