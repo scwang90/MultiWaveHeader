@@ -1,20 +1,17 @@
-package com.scwang.multiwaveheader;
+package com.scwang.wave;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Shader;
-import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v4.graphics.ColorUtils;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +23,7 @@ import static java.lang.Float.parseFloat;
  * Created by SCWANG on 2017/12/11.
  */
 @SuppressWarnings("unused")
-public class MultiWaveHeader extends View {
+public class MultiWaveHeader extends ViewGroup {
 
     private Paint mPaint = new Paint();
     private Matrix mMatrix = new Matrix();
@@ -38,34 +35,21 @@ public class MultiWaveHeader extends View {
     private long mLastTime = 0;
 
     public MultiWaveHeader(Context context) {
-        super(context);
-        this.initView(context, null);
+        this(context, null, 0);
     }
 
     public MultiWaveHeader(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        this.initView(context, attrs);
+        this(context, attrs, 0);
     }
 
     public MultiWaveHeader(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.initView(context, attrs);
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public MultiWaveHeader(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        this.initView(context, attrs);
-    }
-
-    private void initView(Context context, AttributeSet attrs) {
-        Wave.DP = dp2px(1);
 
         mPaint.setAntiAlias(true);
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.MultiWaveHeader);
 
-        mWaveHeight = ta.getDimensionPixelOffset(R.styleable.MultiWaveHeader_mwhWaveHeight, dp2px(50));
+        mWaveHeight = ta.getDimensionPixelOffset(R.styleable.MultiWaveHeader_mwhWaveHeight, Util.dp2px(50));
         mStartColor = ta.getColor(R.styleable.MultiWaveHeader_mwhStartColor, 0xff1372CF);
         mCloseColor = ta.getColor(R.styleable.MultiWaveHeader_mwhCloseColor, 0xFF40B5FF);
         mAlphaColor = ta.getFloat(R.styleable.MultiWaveHeader_mwhAlphaColor, 0.3f);
@@ -84,13 +68,35 @@ public class MultiWaveHeader extends View {
     }
 
     @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+
+        int count = getChildCount();
+        if (count > 0) {
+            for (int i = 0; i < count; i++) {
+                View child = getChildAt(i);
+                if (child instanceof Wave) {
+                    child.setVisibility(GONE);
+                } else {
+                    throw new RuntimeException("只能用Wave作为子视图，You can only use Wave as a subview.");
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+
+    }
+
+    @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         updateWavePath(w,h);
     }
 
     private void updateWavePath(int w, int h) {
-        int wave = mWaveHeight;
+        int waveHeight = mWaveHeight;
 
         int startColor = ColorUtils.setAlphaComponent(mStartColor, (int)(mAlphaColor*255));
         int closeColor = ColorUtils.setAlphaComponent(mCloseColor, (int)(mAlphaColor*255));
@@ -98,39 +104,45 @@ public class MultiWaveHeader extends View {
 
         mltWave.clear();
 
-        if (getTag() instanceof String) {
+        int count = getChildCount();
+        if (count > 0) {
+            for (int i = 0; i < count; i++) {
+                Wave wave = (Wave) getChildAt(i);
+                wave.updateWavePath(w, h, waveHeight);
+                mltWave.add(wave);
+            }
+        } else if (getTag() instanceof String) {
             String[] waves = getTag().toString().split("\\s+");
             for (String twave : waves) {
-                String[] args = twave.split("\\s*,\\s*");
+                String[] args = twave.split ("\\s*,\\s*");
                 if (args.length == 5) {
-                    mltWave.add(new Wave(dp2px(parseFloat(args[0])), dp2px(parseFloat(args[1])),dp2px(parseFloat(args[4])), parseFloat(args[2]), parseFloat(args[3]), w, h, wave));
+                    mltWave.add(new Wave(getContext(),Util.dp2px(parseFloat(args[0])), Util.dp2px(parseFloat(args[1])), Util.dp2px(parseFloat(args[4])), parseFloat(args[2]), parseFloat(args[3]), w, h, waveHeight/2));
                 }
             }
         } else {
-            mltWave.add(new Wave(dp2px(50), dp2px(0), dp2px(5), 1.7f, 2f, w, h, wave));
+            mltWave.add(new Wave(getContext(),Util.dp2px(50), Util.dp2px(0), Util.dp2px(5), 1.7f, 2f, w, h, waveHeight/2));
         }
     }
 
-
     @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+    protected void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
         if (mltWave.size() > 0) {
             long thisTime = System.currentTimeMillis();
             for (Wave wave : mltWave) {
                 mMatrix.reset();
                 canvas.save();
                 if (mLastTime > 0 && wave.velocity != 0) {
-                    int offsetx = (wave.offsetX + (int) (wave.velocity * (thisTime - mLastTime) / 1000f));
+                    int offsetX = (wave.offsetX + (int) (wave.velocity * (thisTime - mLastTime) / 1000f));
                     if (wave.velocity > 0) {
-                        offsetx %= wave.width / 2;
+                        offsetX %= wave.width / 2;
                     } else {
-                        while (offsetx < 0) {
-                            offsetx += (wave.width / 2);
+                        while (offsetX < 0) {
+                            offsetX += (wave.width / 2);
                         }
                     }
-                    mMatrix.setTranslate(offsetx, 0);
-                    canvas.translate(-offsetx, -wave.offsetY);
+                    mMatrix.setTranslate(offsetX, 0);
+                    canvas.translate(-offsetX, -wave.offsetY);
                 } else{
                     mMatrix.setTranslate(wave.offsetX, 0);
                     canvas.translate(-wave.offsetX, -wave.offsetY);
@@ -142,16 +154,8 @@ public class MultiWaveHeader extends View {
             if (mLastTime == 0) {
                 mLastTime = thisTime;
             }
+            invalidate();
         }
-        invalidate();
-    }
-
-    /**
-     * dp转px
-     */
-    public static int dp2px(float dpVal) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                dpVal, Resources.getSystem().getDisplayMetrics());
     }
 
 }

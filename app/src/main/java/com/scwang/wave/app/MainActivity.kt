@@ -1,4 +1,4 @@
-package com.scwang.multiwaveheader.app
+package com.scwang.wave.app
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView

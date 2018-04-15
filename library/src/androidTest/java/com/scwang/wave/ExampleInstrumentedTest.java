@@ -1,4 +1,4 @@
-package com.scwang.multiwaveheader;
+package com.scwang.wave;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.scwang.multiwaveheader.app.UserLoginActivity">
+    android:background="@color/white"
+    tools:context=".UserLoginActivity">
 
-    <com.scwang.multiwaveheader.MultiWaveHeader
+    <com.scwang.wave.MultiWaveHeader
         android:id="@+id/waves"
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -19,7 +20,38 @@
         420,0,1.15,1,-10
         520,10,1.7,1.5,20
         220,0,1,1,-15
-        "/>
+        ">
+        <!--<com.scwang.wave.Wave style="@style/MultiWaveHeader.Wave"-->
+            <!--app:mwOffsetX="70dp"-->
+            <!--app:mwOffsetY="25dp"-->
+            <!--app:mwScaleX="1.4"-->
+            <!--app:mwScaleY="1.4"-->
+            <!--app:mwVelocity="-26dp"/>-->
+        <!--<com.scwang.wave.Wave style="@style/MultiWaveHeader.Wave"-->
+            <!--app:mwOffsetX="100dp"-->
+            <!--app:mwOffsetY="5dp"-->
+            <!--app:mwScaleX="1.4"-->
+            <!--app:mwScaleY="1.2"-->
+            <!--app:mwVelocity="-15dp"/>-->
+        <!--<com.scwang.wave.Wave style="@style/MultiWaveHeader.Wave"-->
+            <!--app:mwOffsetX="420dp"-->
+            <!--app:mwOffsetY="0dp"-->
+            <!--app:mwScaleX="1.15"-->
+            <!--app:mwScaleY="1"-->
+            <!--app:mwVelocity="-10dp"/>-->
+        <!--<com.scwang.wave.Wave style="@style/MultiWaveHeader.Wave"-->
+            <!--app:mwOffsetX="520dp"-->
+            <!--app:mwOffsetY="10dp"-->
+            <!--app:mwScaleX="1.7"-->
+            <!--app:mwScaleY="1.5"-->
+            <!--app:mwVelocity="20dp"/>-->
+        <!--<com.scwang.wave.Wave style="@style/MultiWaveHeader.Wave"-->
+            <!--app:mwOffsetX="220dp"-->
+            <!--app:mwOffsetY="0dp"-->
+            <!--app:mwScaleX="1"-->
+            <!--app:mwScaleY="1"-->
+            <!--app:mwVelocity="-15dp"/>-->
+    </com.scwang.wave.MultiWaveHeader>
 
     <ImageView
         android:id="@+id/logo"

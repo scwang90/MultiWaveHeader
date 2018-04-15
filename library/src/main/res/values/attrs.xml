@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <attr name="mwhWaveHeight" format="dimension"/>
     <declare-styleable name="MultiWaveHeader">
-        <attr name="mwhWaveHeight" format="dimension"/>
+        <attr name="mwhWaveHeight"/>
         <attr name="mwhStartColor" format="color"/>
         <attr name="mwhCloseColor" format="color"/>
-        <attr name="mwhAlphaColor" format="float"/>
+        <attr name="mwhAlphaColor" format="fraction|float"/>
         <attr name="mwhWaves" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="Wave">
+        <attr name="mwOffsetX" format="dimension"/>
+        <attr name="mwOffsetY" format="dimension"/>
+        <attr name="mwVelocity" format="dimension"/>
+        <attr name="mwWaveHeight" format="dimension"/>
+        <attr name="mwScaleX" format="float"/>
+        <attr name="mwScaleY" format="float"/>
     </declare-styleable>
 
 </resources>

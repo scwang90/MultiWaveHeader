@@ -1,4 +1,4 @@
-package com.scwang.multiwaveheader.app;
+package com.scwang.wave.app;
 
 import android.app.Activity;
 import android.content.Context;
@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
  * Created by SCWANG on 2016/10/26.
  */
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class StatusBarUtil {
 
     public static int DEFAULT_COLOR = 0;
