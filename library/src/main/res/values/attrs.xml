@@ -12,6 +12,7 @@
         <attr name="mwhColorAlpha" format="fraction|float"/>
         <attr name="mwhProgress" format="fraction|float"/>
         <attr name="mwhVelocity" format="fraction|float"/>
+        <attr name="mwhGradientAngle" format="integer"/>
         <attr name="mwhWaves"/>
     </declare-styleable>
 

@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".UserLoginActivity">
+    tools:context=".activity.UserLoginActivity">
 
     <com.scwang.wave.MultiWaveHeader
-        android:id="@+id/waves"
+        android:id="@+id/waveHeader"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         app:mwhStartColor="@color/colorPrimary"
@@ -59,7 +59,7 @@
         android:layout_height="90dp"
         android:layout_marginTop="-85dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/waves"
+        android:layout_below="@id/waveHeader"
         android:contentDescription="@string/app_name"
         android:src="@mipmap/ic_login_logo"/>
 
@@ -72,7 +72,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_below="@id/waves"
+        android:layout_below="@id/waveHeader"
         android:drawableLeft="@mipmap/ic_login_account"
         android:drawableStart="@mipmap/ic_login_account"
         android:drawablePadding="15dp"

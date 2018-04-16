@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <!--<com.scwang.wave.MultiWaveHeader-->
         <!--android:layout_width="match_parent"-->

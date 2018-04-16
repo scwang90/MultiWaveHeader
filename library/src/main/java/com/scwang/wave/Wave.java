@@ -14,11 +14,11 @@ import android.view.View;
 class Wave extends View {
 
     Path path;          //水波路径
-    int offsetX;        //水波的水平偏移量
-    int offsetY;        //水波的竖直偏移量
-    int velocity;       //水波移动速度（像素/秒）
     int width;          //画布宽度（2倍波长）
     int wave;           //波幅（振幅）
+    float offsetX;        //水波的水平偏移量
+    float offsetY;        //水波的竖直偏移量
+    float velocity;       //水波移动速度（像素/秒）
     float scaleX;       //水平拉伸比例
     float scaleY;       //竖直拉伸比例
 //    int startColor;     //开始颜色

@@ -1,8 +1,10 @@
-package com.scwang.wave.app
+package com.scwang.wave.app.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.scwang.wave.app.R
+import com.scwang.wave.app.fragment.WavePairFragment
+import com.scwang.wave.app.util.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_user_login.*
 
 class UserLoginActivity : AppCompatActivity() {
@@ -14,7 +16,8 @@ class UserLoginActivity : AppCompatActivity() {
         StatusBarUtil.immersive(this)
 
         login.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+//            startActivity(Intent(this, MainActivity::class.java))
+            FragmentActivity.start(this, WavePairFragment::class.java)
         }
     }
 }

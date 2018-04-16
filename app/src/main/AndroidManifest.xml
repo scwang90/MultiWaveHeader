@@ -9,10 +9,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".UserLoginActivity"
+        <activity android:name=".activity.FragmentActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.UserLoginActivity"
             android:screenOrientation="portrait"
             android:label="@string/app_name">
             <intent-filter>

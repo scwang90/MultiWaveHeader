@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,48 +7,172 @@
     android:orientation="vertical"
     tools:context=".fragment.WavePairFragment">
 
+    <com.scwang.wave.MultiWaveHeader
+        android:id="@+id/multiWaveHeader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:mwhColorAlpha="0.7"
+        app:mwhProgress="0.45"
+        app:mwhVelocity="5"
+        app:mwhWaves="MultiWave">
+        <!--<com.scwang.wave.Wave style="@style/MultiWaveHeader.Wave"-->
+            <!--app:mwVelocity="100dp"-->
+            <!--app:mwScaleX="1.2"/>-->
+        <!--<com.scwang.wave.Wave style="@style/MultiWaveHeader.Wave"-->
+            <!--app:mwOffsetX="100dp"-->
+            <!--app:mwVelocity="-90dp"/>-->
+    </com.scwang.wave.MultiWaveHeader>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:padding="@dimen/padding_common"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+            <TextView style="@style/AppTheme.Label"
+                android:text="Direction:"/>
+            <CheckBox
+                android:id="@+id/checkBoxDirection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="up side down"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+            <TextView style="@style/AppTheme.Label"
+                android:text="Number:"/>
+            <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                android:id="@+id/seekNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dsb_indicatorColor="@color/colorPrimary"
+                app:dsb_progressColor="@color/colorPrimary"
+                app:dsb_max="5"
+                app:dsb_min="0"
+                app:dsb_value="5"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+            <TextView style="@style/AppTheme.Label"
+                android:text="Wave:"/>
+            <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                android:id="@+id/seekWave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dsb_indicatorColor="@color/colorPrimary"
+                app:dsb_progressColor="@color/colorPrimary"
+                app:dsb_max="60"
+                app:dsb_min="0"
+                app:dsb_value="30"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+            <TextView style="@style/AppTheme.Label"
+                android:text="Angle:"/>
+            <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                android:id="@+id/seekAngle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dsb_indicatorColor="@color/colorPrimary"
+                app:dsb_progressColor="@color/colorPrimary"
+                app:dsb_max="360"
+                app:dsb_min="0"
+                app:dsb_value="45"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+            <TextView style="@style/AppTheme.Label"
+                android:text="Alpha:"/>
+            <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                android:id="@+id/seekAlpha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dsb_indicatorColor="@color/colorPrimary"
+                app:dsb_progressColor="@color/colorPrimary"
+                app:dsb_max="100"
+                app:dsb_min="0"
+                app:dsb_value="45"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+            <TextView style="@style/AppTheme.Label"
+                android:text="Velocity:"/>
+            <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                android:id="@+id/seekVelocity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dsb_indicatorColor="@color/colorPrimary"
+                app:dsb_progressColor="@color/colorPrimary"
+                app:dsb_max="100"
+                app:dsb_min="0"
+                app:dsb_value="50"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+            <TextView style="@style/AppTheme.Label"
+                android:text="Progress:"/>
+            <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                android:id="@+id/seekProgress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dsb_indicatorColor="@color/colorPrimary"
+                app:dsb_progressColor="@color/colorPrimary"
+                app:dsb_max="100"
+                app:dsb_min="0"
+                app:dsb_value="70"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+            <TextView style="@style/AppTheme.Label"
+                android:text="StartColor:"/>
+            <com.larswerkman.lobsterpicker.sliders.LobsterShadeSlider
+                android:id="@+id/sliderStartColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+            <TextView style="@style/AppTheme.Label"
+                android:text="CloseColor:"/>
+            <com.larswerkman.lobsterpicker.sliders.LobsterShadeSlider
+                android:id="@+id/sliderCloseColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
     <android.support.v7.widget.Toolbar style="@style/AppTheme.Toolbar"
-        app:title="@string/fragment_wave_pair"/>
+        android:id="@+id/toolbar"
+        app:title="@string/fragment_wave_pair"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:contentInsetStartWithNavigation="0dp"
+        android:background="@color/transparent"/>
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-
-        <com.scwang.wave.MultiWaveHeader
-            android:id="@+id/multiWaveHeader"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:mwhColorAlpha="0.7"
-            app:mwhWaveHeight="20dp"
-            app:mwhProgress="0.75"
-            app:mwhWaves="MultiWave"
-            android:scaleY="-1">
-            <!--<com.scwang.wave.Wave style="@style/MultiWaveHeader.Wave"-->
-                <!--app:mwVelocity="100dp"-->
-                <!--app:mwScaleX="1.2"/>-->
-            <!--<com.scwang.wave.Wave style="@style/MultiWaveHeader.Wave"-->
-                <!--app:mwOffsetX="100dp"-->
-                <!--app:mwVelocity="-90dp"/>-->
-        </com.scwang.wave.MultiWaveHeader>
-
-
-        <SeekBar style="@style/Widget.AppCompat.SeekBar"
-            android:id="@+id/seeVelocity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="100dp"
-            android:max="100"
-            android:progress="50" />
-
-        <SeekBar style="@style/Widget.AppCompat.SeekBar"
-            android:id="@+id/seekProgress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="50dp"
-            android:max="100"
-            android:progress="70" />
-    </FrameLayout>
-
-</LinearLayout>
+</FrameLayout>

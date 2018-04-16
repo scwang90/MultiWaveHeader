@@ -1,4 +1,4 @@
-package com.scwang.wave.app;
+package com.scwang.wave.app.util;
 
 import android.app.Activity;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.scwang.wave.app
+package com.scwang.wave.app.activity
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView.OnNavigationItemSelectedListener
@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import com.scwang.wave.app.R
 import com.scwang.wave.app.fragment.WavePairFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.reflect.KClass
