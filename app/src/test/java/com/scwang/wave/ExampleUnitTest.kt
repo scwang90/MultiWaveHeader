@@ -1,4 +1,4 @@
-package com.scwang.multiwaveheader
+package com.scwang.wave
 
 import org.junit.Test
 

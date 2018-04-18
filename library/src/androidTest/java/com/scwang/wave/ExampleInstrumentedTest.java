@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.scwang.multiwaveheader.test", appContext.getPackageName());
+        assertEquals("com.scwang.wave.test", appContext.getPackageName());
     }
 }

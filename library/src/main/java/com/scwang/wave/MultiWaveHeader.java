@@ -113,15 +113,16 @@ public class MultiWaveHeader extends ViewGroup {
                 mMatrix.reset();
                 canvas.save();
                 if (mLastTime > 0 && wave.velocity != 0) {
-                    float offsetX = (wave.offsetX + (wave.velocity * mVelocity * (thisTime - mLastTime) / 1000f));
-                    if (wave.velocity > 0) {
+                    float offsetX = (wave.offsetX - (wave.velocity * mVelocity * (thisTime - mLastTime) / 1000f));
+                    if (-wave.velocity > 0) {
                         offsetX %= wave.width / 2;
                     } else {
                         while (offsetX < 0) {
                             offsetX += (wave.width / 2);
                         }
                     }
-                    mMatrix.setTranslate(wave.offsetX = offsetX, (1 - mProgress) * height);//wave.offsetX =
+                    wave.offsetX = offsetX;
+                    mMatrix.setTranslate(offsetX, (1 - mProgress) * height);//wave.offsetX =
                     canvas.translate(-offsetX, -wave.offsetY - (1 - mProgress) * height);
                 } else{
                     mMatrix.setTranslate(wave.offsetX, (1 - mProgress) * height);
