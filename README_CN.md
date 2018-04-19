@@ -5,10 +5,36 @@
 [![Platform](https://img.shields.io/badge/Platform-Android-f0ad4e.svg)](https://www.android.com)
 [![Author](https://img.shields.io/badge/Author-scwang90-11bbff.svg)](https://github.com/scwang90)
 
-## Demo
-[下载 APK-Demo](art/app-debug.apk)
+## [English](https://github.com/scwang90/MultiWaveHeader/blob/master/README.md) | 中文
+
+## 功能特点
+
+ - 支持调节进度.
+ - 支持调节速度.
+ - 支持设置方向（上下）.
+ - 支持设置水波的数量（无上限）.
+ - 支持精确定义水波的参数（偏移、拉伸、原始速度）.
+ - 支持设置颜色渐变和改变渐变方向.
+
+## 演示
+[Download APK-Demo](art/app-debug.apk)
+
+### 实战
 
 ![](art/gif_index_preview.gif)
+
+
+## 控制台
+
+### 方向
+
+|顶部|底部|
+|:---:|:---:|
+![](art/gif_console_1.gif)|![](art/gif_console_2.gif)|
+
+|一对|单一|
+|:---:|:---:|
+![](art/gif_console_3.gif)|![](art/gif_console_4.gif)|
 
 
 License
