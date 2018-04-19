@@ -31,6 +31,7 @@ dependencies {
     implementation 'com.android.support:support-v4:26.1.0'
     implementation 'com.larswerkman:lobsterpicker:1.0.1'
     implementation 'org.adw.library:discrete-seekbar:1.0.0'
+//    implementation 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'

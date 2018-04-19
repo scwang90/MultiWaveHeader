@@ -8,6 +8,8 @@
 
 ## English | [中文](https://github.com/scwang90/MultiWaveHeader/blob/master/README_CN.md)
 
+MultiWaveHeader is an android wave view that can be highly customized for each wave.
+
 ## Features
 
  - Support adjust progress.
@@ -39,6 +41,97 @@
 |:---:|:---:|
 ![](art/gif_console_3.gif)|![](art/gif_console_4.gif)|
 
+
+## Usage
+#### 1.Add a gradle dependency.
+```
+    compile 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-0'
+```
+
+#### 2.Add SmartRefreshLayout in the layout xml.
+```xml
+    <com.scwang.wave.MultiWaveHeader
+        android:id="@+id/waveHeader"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+```
+
+## Property
+
+#### you can config basic attribute of waves.
+
+###### java
+```java
+    MultiWaveHeader waveHeader = findViewById(R.id.waveHeader);
+
+    waveHeader.setStartColor(R.color.colorPrimary);
+    waveHeader.setCloseColor(R.color.colorPrimaryDark);
+    waveHeader.setColorAlpha(.5f);
+
+    waveHeader.setWaveHeight(50);
+    waveHeader.setGradientAngle(360);
+    waveHeader.setProgress(.8f);
+    waveHeader.setVelocity(1f);
+    waveHeader.setScaleY(-1f);
+
+    waveHeader.setWaves("PairWave");
+```
+
+###### xml
+```xml
+    <com.scwang.wave.MultiWaveHeader
+        android:id="@+id/waveHeader"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleY="-1"
+        app:mwhVelocity="1"
+        app:mwhProgress="1"
+        app:mwhGradientAngle="45"
+        app:mwhWaveHeight="50dp"
+        app:mwhColorAlpha="0.45"
+        app:mwhStartColor="@color/colorPrimaryDark"
+        app:mwhCloseColor="@color/colorPrimaryLight"
+        app:mwhWaves="MultiWave">
+```
+
+
+## Custom
+
+#### You can customize each wave with precision.
+
+###### java
+```java
+    MultiWaveHeader waveHeader = findViewById(R.id.waveHeader);
+
+
+    String[] waves = new String[]{
+        "70,25,1.4,1.4,-26",//wave-1:offsetX(dp),offsetY(dp),scaleX,scaleY,velocity(dp/s)
+        "100,5,1.4,1.2,15",
+        "420,0,1.15,1,-10",//wave-3:offsetX(dp),offsetY(dp),scaleX,scaleY,velocity(dp/s)
+        "520,10,1.7,1.5,20",
+        "220,0,1,1,-15",
+    };
+    waveHeader.setWaves(TextUtils.join(" ", Arrays.asList(waves)));// custom
+    waveHeader.setWaves("PairWave");// default two waves
+    waveHeader.setWaves("MultiWave");// default five waves
+
+```
+
+###### xml
+```xml
+    <com.scwang.wave.MultiWaveHeader
+        android:id="@+id/waveHeader"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:mwhWaves="PairWave"
+        app:mwhWaves="MultiWave"
+        app:mwhWaves="
+            70,25,1.4,1.4,-26
+            100,5,1.4,1.2,15
+            420,0,1.15,1,-10
+            520,10,1.7,1.5,20
+            220,0,1,1,-15">
+```
 
 License
 -------

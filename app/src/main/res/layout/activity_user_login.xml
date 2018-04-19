@@ -11,16 +11,26 @@
         android:id="@+id/waveHeader"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        app:mwhStartColor="@color/colorPrimary"
-        app:mwhCloseColor="#31AFFE"
+        app:mwhVelocity="1"
+        app:mwhProgress="1"
+        app:mwhGradientAngle="45"
+        app:mwhWaveHeight="50dp"
         app:mwhColorAlpha="0.45"
-        android:tag="
+        app:mwhStartColor="@color/colorPrimaryDark"
+        app:mwhCloseColor="@color/colorPrimaryLight"
+        app:mwhWaves="MultiWave">
+
+        <!--android:tag="-->
         70,25,1.4,1.4,-26
         100,5,1.4,1.2,15
         420,0,1.15,1,-10
         520,10,1.7,1.5,20
         220,0,1,1,-15
-        ">
+        <!--"-->
+        <!--app:mwhStartColor="@color/colorPrimary"-->
+        <!--app:mwhCloseColor="#31AFFE"-->
+        <!--app:mwhWaves="MultiWave"-->
+        <!--app:mwhColorAlpha="0.45"-->
         <!--<com.scwang.wave.Wave style="@style/MultiWaveHeader.Wave"-->
             <!--app:mwOffsetX="70dp"-->
             <!--app:mwOffsetY="25dp"-->

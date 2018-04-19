@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.larswerkman.lobsterpicker.OnColorListener
-import com.scwang.wave.Util
 import com.scwang.wave.app.R
 import com.scwang.wave.app.util.StatusBarUtil
 import kotlinx.android.synthetic.main.fragment_wave_pair.*
@@ -17,7 +16,6 @@ import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
 
 /**
  * A simple [Fragment] subclass.
- *
  */
 class WavePairFragment : Fragment(), DiscreteSeekBar.OnProgressChangeListener {
 
@@ -85,7 +83,7 @@ class WavePairFragment : Fragment(), DiscreteSeekBar.OnProgressChangeListener {
 
     override fun onStopTrackingTouch(seekBar: DiscreteSeekBar) {
         if (seekWave == seekBar) {
-            multiWaveHeader.waveHeight = Util.dp2px(1f * seekBar.progress)
+            multiWaveHeader.waveHeight = seekBar.progress
         } else if (seekNumber == seekBar) {
             if (seekBar.progress == 2) {
                 /**

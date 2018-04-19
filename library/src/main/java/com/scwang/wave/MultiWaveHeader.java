@@ -7,6 +7,7 @@ import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Shader;
+import android.support.annotation.ColorRes;
 import android.support.annotation.Nullable;
 import android.support.v4.graphics.ColorUtils;
 import android.util.AttributeSet;
@@ -53,9 +54,9 @@ public class MultiWaveHeader extends ViewGroup {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.MultiWaveHeader);
 
         mWaveHeight = ta.getDimensionPixelOffset(R.styleable.MultiWaveHeader_mwhWaveHeight, Util.dp2px(50));
-        mStartColor = ta.getColor(R.styleable.MultiWaveHeader_mwhStartColor, 0xff1372CF);
-        mCloseColor = ta.getColor(R.styleable.MultiWaveHeader_mwhCloseColor, 0xFF40B5FF);
-        mColorAlpha = ta.getFloat(R.styleable.MultiWaveHeader_mwhColorAlpha, 0.3f);
+        mStartColor = ta.getColor(R.styleable.MultiWaveHeader_mwhStartColor, 0xFF056CD0);
+        mCloseColor = ta.getColor(R.styleable.MultiWaveHeader_mwhCloseColor, 0xFF31AFFE);
+        mColorAlpha = ta.getFloat(R.styleable.MultiWaveHeader_mwhColorAlpha, 0.45f);
         mProgress = ta.getFloat(R.styleable.MultiWaveHeader_mwhProgress, 1f);
         mVelocity = ta.getFloat(R.styleable.MultiWaveHeader_mwhVelocity, 1f);
         mGradientAngle = ta.getInt(R.styleable.MultiWaveHeader_mwhGradientAngle, 45);
@@ -73,22 +74,22 @@ public class MultiWaveHeader extends ViewGroup {
         ta.recycle();
     }
 
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-
-        int count = getChildCount();
-        if (count > 0) {
-            for (int i = 0; i < count; i++) {
-                View child = getChildAt(i);
-                if (child instanceof Wave) {
-                    child.setVisibility(GONE);
-                } else {
-                    throw new RuntimeException("只能用Wave作为子视图，You can only use Wave as a subview.");
-                }
-            }
-        }
-    }
+//    @Override
+//    protected void onFinishInflate() {
+//        super.onFinishInflate();
+//
+//        int count = getChildCount();
+//        if (count > 0) {
+//            for (int i = 0; i < count; i++) {
+//                View child = getChildAt(i);
+//                if (child instanceof Wave) {
+//                    child.setVisibility(GONE);
+//                } else {
+//                    throw new RuntimeException("只能用Wave作为子视图，You can only use Wave as a subview.");
+//                }
+//            }
+//        }
+//    }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
@@ -143,28 +144,28 @@ public class MultiWaveHeader extends ViewGroup {
 
         mltWave.clear();
 
-        int count = getChildCount();
+        /*int count = getChildCount();
         if (count > 0) {
             for (int i = 0; i < count; i++) {
                 Wave wave = (Wave) getChildAt(i);
                 wave.updateWavePath(w, h, mWaveHeight);
                 mltWave.add(wave);
             }
-        } else if (getTag() instanceof String) {
+        } else */if (getTag() instanceof String) {
             String[] waves = getTag().toString().split("\\s+");
             if ("-1".equals(getTag())) {
                 waves = "70,25,1.4,1.4,-26\n100,5,1.4,1.2,15\n420,0,1.15,1,-10\n520,10,1.7,1.5,20\n220,0,1,1,-15".split("\\s+");
             } else if ("-2".equals(getTag())) {
-                waves = "0,0,1,1,100\n0,0,1,1,-90".split("\\s+");
+                waves = "0,0,1,0.5,90\n90,0,1,0.5,90".split("\\s+");
             }
             for (String wave : waves) {
                 String[] args = wave.split ("\\s*,\\s*");
                 if (args.length == 5) {
-                    mltWave.add(new Wave(getContext(),Util.dp2px(parseFloat(args[0])), Util.dp2px(parseFloat(args[1])), Util.dp2px(parseFloat(args[4])), parseFloat(args[2]), parseFloat(args[3]), w, h, mWaveHeight/2));
+                    mltWave.add(new Wave(/*getContext(),*/Util.dp2px(parseFloat(args[0])), Util.dp2px(parseFloat(args[1])), Util.dp2px(parseFloat(args[4])), parseFloat(args[2]), parseFloat(args[3]), w, h, mWaveHeight/2));
                 }
             }
         } else {
-            mltWave.add(new Wave(getContext(),Util.dp2px(50), Util.dp2px(0), Util.dp2px(5), 1.7f, 2f, w, h, mWaveHeight/2));
+            mltWave.add(new Wave(/*getContext(),*/Util.dp2px(50), Util.dp2px(0), Util.dp2px(5), 1.7f, 2f, w, h, mWaveHeight/2));
         }
 
     }
@@ -182,7 +183,7 @@ public class MultiWaveHeader extends ViewGroup {
     }
 
     public void setWaveHeight(int waveHeight) {
-        this.mWaveHeight = waveHeight;
+        this.mWaveHeight = Util.dp2px(waveHeight);
         if (!mltWave.isEmpty()) {
             View thisView = this;
             updateWavePath(thisView.getWidth(), thisView.getHeight());
@@ -245,6 +246,11 @@ public class MultiWaveHeader extends ViewGroup {
         }
     }
 
+    public void setStartColorId(@ColorRes int colorId) {
+        final View thisView = this;
+        setStartColor(Util.getColor(thisView.getContext(), colorId));
+    }
+
     public int getCloseColor() {
         return mCloseColor;
     }
@@ -255,6 +261,11 @@ public class MultiWaveHeader extends ViewGroup {
             View thisView = this;
             updateLinearGradient(thisView.getWidth(), thisView.getHeight());
         }
+    }
+
+    public void setCloseColorId(@ColorRes int colorId) {
+        final View thisView = this;
+        setCloseColor(Util.getColor(thisView.getContext(), colorId));
     }
 
     public float getColorAlpha() {
