@@ -38,6 +38,8 @@ class WavePairFragment : Fragment(), DiscreteSeekBar.OnProgressChangeListener {
         seekAlpha.progress = (multiWaveHeader.colorAlpha * 100).toInt()
         seekProgress.progress = (multiWaveHeader.progress * 100).toInt()
         seekWave.progress = (multiWaveHeader.waveHeight / Resources.getSystem().displayMetrics.density).toInt()
+        checkBoxRunning.isChecked = multiWaveHeader.isRunning
+        checkBoxDirection.isChecked = multiWaveHeader.scaleY == -1f
 
         seekWave.setOnProgressChangeListener(this)
         seekAngle.setOnProgressChangeListener(this)
@@ -45,6 +47,13 @@ class WavePairFragment : Fragment(), DiscreteSeekBar.OnProgressChangeListener {
         seekProgress.setOnProgressChangeListener(this)
         seekAlpha.setOnProgressChangeListener(this)
         seekNumber.setOnProgressChangeListener(this)
+        checkBoxRunning.setOnCheckedChangeListener({_,value->
+            if (value) {
+                multiWaveHeader.start()
+            } else {
+                multiWaveHeader.stop()
+            }
+        })
         checkBoxDirection.setOnCheckedChangeListener({_,value->
             multiWaveHeader.scaleY = if (value) -1f else 1f
             toolbar.setBackgroundColor(if (value) ContextCompat.getColor(context,R.color.colorPrimary) else 0)

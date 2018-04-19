@@ -1,6 +1,7 @@
 # MultiWaveHeader
 
 [![License](https://img.shields.io/badge/License%20-Apache%202-337ab7.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![JCenter](https://img.shields.io/badge/%20Jcenter%20-1.0.0-5bc0de.svg)](https://bintray.com/scwang90/maven/MultiWaveHeader/_latestVersion)
 [![MinSdk](https://img.shields.io/badge/%20MinSdk%20-%209%2B%20-f0ad4e.svg)](https://android-arsenal.com/api?level=9)
 [![Platform](https://img.shields.io/badge/Platform-Android-f0ad4e.svg)](https://www.android.com)
 [![Author](https://img.shields.io/badge/Author-scwang90-11bbff.svg)](https://github.com/scwang90)
@@ -36,19 +37,17 @@ MultiWaveHeader is an android wave view that can be highly customized for each w
 |:---:|:---:|
 ![](art/gif_console_1.gif)|![](art/gif_console_2.gif)|
 
-
 |pair|single|
 |:---:|:---:|
 ![](art/gif_console_3.gif)|![](art/gif_console_4.gif)|
 
-
 ## Usage
 #### 1.Add a gradle dependency.
 ```
-    compile 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-0'
+    compile 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-1'
 ```
 
-#### 2.Add SmartRefreshLayout in the layout xml.
+#### 2.Add MultiWaveHeader in the layout xml.
 ```xml
     <com.scwang.wave.MultiWaveHeader
         android:id="@+id/waveHeader"
@@ -75,6 +74,11 @@ MultiWaveHeader is an android wave view that can be highly customized for each w
     waveHeader.setScaleY(-1f);
 
     waveHeader.setWaves("PairWave");
+
+    waveHeader.start();
+    waveHeader.stop();
+    waveHeader.isRunning();
+
 ```
 
 ###### xml
@@ -86,6 +90,7 @@ MultiWaveHeader is an android wave view that can be highly customized for each w
         android:scaleY="-1"
         app:mwhVelocity="1"
         app:mwhProgress="1"
+        app:mwhRunning="true"
         app:mwhGradientAngle="45"
         app:mwhWaveHeight="50dp"
         app:mwhColorAlpha="0.45"
@@ -93,7 +98,6 @@ MultiWaveHeader is an android wave view that can be highly customized for each w
         app:mwhCloseColor="@color/colorPrimaryLight"
         app:mwhWaves="MultiWave">
 ```
-
 
 ## Custom
 

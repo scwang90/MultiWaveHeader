@@ -32,12 +32,17 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
             <TextView style="@style/AppTheme.Label"
-                android:text="Direction:"/>
+                android:text="Toggle:"/>
             <CheckBox
                 android:id="@+id/checkBoxDirection"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="up side down"/>
+            <CheckBox
+                android:id="@+id/checkBoxRunning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="running"/>
         </LinearLayout>
 
         <LinearLayout

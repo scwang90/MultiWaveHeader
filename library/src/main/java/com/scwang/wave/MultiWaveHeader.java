@@ -33,6 +33,7 @@ public class MultiWaveHeader extends ViewGroup {
     private int mStartColor;
     private int mCloseColor;
     private int mGradientAngle;
+    private boolean mIsRunning;
     private float mVelocity;
     private float mColorAlpha;
     private float mProgress;
@@ -60,6 +61,7 @@ public class MultiWaveHeader extends ViewGroup {
         mProgress = ta.getFloat(R.styleable.MultiWaveHeader_mwhProgress, 1f);
         mVelocity = ta.getFloat(R.styleable.MultiWaveHeader_mwhVelocity, 1f);
         mGradientAngle = ta.getInt(R.styleable.MultiWaveHeader_mwhGradientAngle, 45);
+        mIsRunning = ta.getBoolean(R.styleable.MultiWaveHeader_mwhIsRunning, true);
 
         if (ta.hasValue(R.styleable.MultiWaveHeader_mwhWaves)) {
             setTag(ta.getString(R.styleable.MultiWaveHeader_mwhWaves));
@@ -133,11 +135,23 @@ public class MultiWaveHeader extends ViewGroup {
                 canvas.drawPath(wave.path, mPaint);
                 canvas.restore();
             }
-//            if (mLastTime == 0) {
-//            }
             mLastTime = thisTime;
         }
-        invalidate();
+        if (mIsRunning) {
+            invalidate();
+        }
+    }
+
+    private void updateLinearGradient(int width, int height) {
+        int startColor = ColorUtils.setAlphaComponent(mStartColor, (int)(mColorAlpha*255));
+        int closeColor = ColorUtils.setAlphaComponent(mCloseColor, (int)(mColorAlpha*255));
+        //noinspection UnnecessaryLocalVariable
+        double w = width;
+        double h = height * mProgress;
+        double r = Math.sqrt(w * w + h * h) / 2;
+        double y = r * Math.sin(2 * Math.PI * mGradientAngle / 360);
+        double x = r * Math.cos(2 * Math.PI * mGradientAngle / 360);
+        mPaint.setShader(new LinearGradient((int)(w/2-x), (int)(h/2-y), (int)(w/2+x), (int)(h/2+y), startColor, closeColor, Shader.TileMode.CLAMP));
     }
 
     private void updateWavePath(int w, int h) {
@@ -222,18 +236,6 @@ public class MultiWaveHeader extends ViewGroup {
         }
     }
 
-    private void updateLinearGradient(int width, int height) {
-        int startColor = ColorUtils.setAlphaComponent(mStartColor, (int)(mColorAlpha*255));
-        int closeColor = ColorUtils.setAlphaComponent(mCloseColor, (int)(mColorAlpha*255));
-        //noinspection UnnecessaryLocalVariable
-        double w = width;
-        double h = height * mProgress;
-        double r = Math.sqrt(w * w + h * h) / 2;
-        double y = r * Math.sin(2 * Math.PI * mGradientAngle / 360);
-        double x = r * Math.cos(2 * Math.PI * mGradientAngle / 360);
-        mPaint.setShader(new LinearGradient((int)(w/2-x), (int)(h/2-y), (int)(w/2+x), (int)(h/2+y), startColor, closeColor, Shader.TileMode.CLAMP));
-    }
-
     public int getStartColor() {
         return mStartColor;
     }
@@ -278,5 +280,21 @@ public class MultiWaveHeader extends ViewGroup {
             View thisView = this;
             updateLinearGradient(thisView.getWidth(), thisView.getHeight());
         }
+    }
+
+    public void start() {
+        if (!mIsRunning) {
+            mIsRunning = true;
+            mLastTime = System.currentTimeMillis();
+            invalidate();
+        }
+    }
+
+    public void stop() {
+        mIsRunning = false;
+    }
+
+    public boolean isRunning() {
+        return mIsRunning;
     }
 }

@@ -16,16 +16,16 @@
         app:mwhGradientAngle="45"
         app:mwhWaveHeight="50dp"
         app:mwhColorAlpha="0.45"
-        app:mwhStartColor="@color/colorPrimaryDark"
+        app:mwhStartColor="@color/colorPrimary"
         app:mwhCloseColor="@color/colorPrimaryLight"
         app:mwhWaves="MultiWave">
 
         <!--android:tag="-->
-        70,25,1.4,1.4,-26
-        100,5,1.4,1.2,15
-        420,0,1.15,1,-10
-        520,10,1.7,1.5,20
-        220,0,1,1,-15
+        <!--70,25,1.4,1.4,-26-->
+        <!--100,5,1.4,1.2,15-->
+        <!--420,0,1.15,1,-10-->
+        <!--520,10,1.7,1.5,20-->
+        <!--220,0,1,1,-15-->
         <!--"-->
         <!--app:mwhStartColor="@color/colorPrimary"-->
         <!--app:mwhCloseColor="#31AFFE"-->

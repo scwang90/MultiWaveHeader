@@ -1,7 +1,8 @@
 # 多重水波纹 - MultiWaveHeader
 
 [![License](https://img.shields.io/badge/License%20-Apache%202-337ab7.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-[![MinSdk](https://img.shields.io/badge/%20MinSdk%20-%2012%2B%20-f0ad4e.svg)](https://android-arsenal.com/api?level=14)
+[![JCenter](https://img.shields.io/badge/%20Jcenter%20-1.0.0-5bc0de.svg)](https://bintray.com/scwang90/maven/MultiWaveHeader/_latestVersion)
+[![MinSdk](https://img.shields.io/badge/%20MinSdk%20-%209%2B%20-f0ad4e.svg)](https://android-arsenal.com/api?level=9)
 [![Platform](https://img.shields.io/badge/Platform-Android-f0ad4e.svg)](https://www.android.com)
 [![Author](https://img.shields.io/badge/Author-scwang90-11bbff.svg)](https://github.com/scwang90)
 
@@ -38,9 +39,23 @@ MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
 |:---:|:---:|
 ![](art/gif_console_3.gif)|![](art/gif_console_4.gif)|
 
-## Property
+## 简单用例
+#### 1.在 build.gradle 中添加依赖
+```
+    compile 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-1'
+```
 
-#### you can config basic attribute of waves.
+#### 2.在XML布局文件中添加 MultiWaveHeader
+```xml
+    <com.scwang.wave.MultiWaveHeader
+        android:id="@+id/waveHeader"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+```
+
+## 属性
+
+#### 可以配置一些基本的属性.
 
 ###### java
 ```java
@@ -57,6 +72,10 @@ MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
     waveHeader.setScaleY(-1f);
 
     waveHeader.setWaves("PairWave");
+
+    waveHeader.start();
+    waveHeader.stop();
+    waveHeader.isRunning();
 ```
 
 ###### xml
@@ -68,6 +87,7 @@ MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
         android:scaleY="-1"
         app:mwhVelocity="1"
         app:mwhProgress="1"
+        app:mwhRunning="true"
         app:mwhGradientAngle="45"
         app:mwhWaveHeight="50dp"
         app:mwhColorAlpha="0.45"
@@ -76,10 +96,9 @@ MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
         app:mwhWaves="MultiWave">
 ```
 
+## 自定义
 
-## Custom
-
-#### You can customize each wave with precision.
+#### 可以高度定制每一条水波.
 
 ###### java
 ```java
@@ -89,7 +108,7 @@ MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
     String[] waves = new String[]{
         "70,25,1.4,1.4,-26",//wave-1:offsetX(dp),offsetY(dp),scaleX,scaleY,velocity(dp/s)
         "100,5,1.4,1.2,15",
-        "420,0,1.15,1,-10",//wave-3:offsetX(dp),offsetY(dp),scaleX,scaleY,velocity(dp/s)
+        "420,0,1.15,1,-10",//wave-3:水平偏移(dp),竖直偏移(dp),水平拉伸,竖直拉伸,速度(dp/s)
         "520,10,1.7,1.5,20",
         "220,0,1,1,-15",
     };
