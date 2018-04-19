@@ -28,6 +28,7 @@ public class Util {
     /**
      * dp转px
      * @param dpVal dp 值
+     * @return px
      */
     public static int dp2px(float dpVal) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,

@@ -36,7 +36,7 @@ publish {
     userOrg = 'scwang90'
     groupId = 'com.scwang.wave'
     artifactId = 'MultiWaveHeader'
-    publishVersion = '1.0.0-alpha-0'
+    publishVersion = '1.0.0-alpha-1'
     desc = 'A wave view of android'
     website = "https://github.com/scwang90/${rootProject.name}"
 }
