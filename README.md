@@ -37,6 +37,8 @@ MultiWaveHeader is an android wave view that can be highly customized for each w
 |:---:|:---:|
 ![](art/gif_console_1.gif)|![](art/gif_console_2.gif)|
 
+### number
+
 |pair|single|
 |:---:|:---:|
 ![](art/gif_console_3.gif)|![](art/gif_console_4.gif)|

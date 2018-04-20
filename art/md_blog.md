@@ -1,30 +1,20 @@
-# 多重水波纹 - MultiWaveHeader
+# Android 炫酷的多重水波纹 MultiWaveHeader
 
-[![License](https://img.shields.io/badge/License%20-Apache%202-337ab7.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-[![JCenter](https://img.shields.io/badge/%20Jcenter%20-1.0.0-5bc0de.svg)](https://bintray.com/scwang90/maven/MultiWaveHeader/_latestVersion)
-[![MinSdk](https://img.shields.io/badge/%20MinSdk%20-%209%2B%20-f0ad4e.svg)](https://android-arsenal.com/api?level=9)
-[![Platform](https://img.shields.io/badge/Platform-Android-f0ad4e.svg)](https://www.android.com)
-[![Author](https://img.shields.io/badge/Author-scwang90-11bbff.svg)](https://github.com/scwang90)
+自去年第一次发布开源库[SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout)以来，深刻的感受到了开源的乐趣。
+所以打算以后开发过程中把一些自己实现的实用开源库也开源出来，供大家使用、讨论、升级。
+MultiWaveHeader 便是第二个发布的开源库！先来看看下面的展示效果吧。
 
-## [English](https://github.com/scwang90/MultiWaveHeader/blob/master/README.md) | 中文
+## Demo
 
-MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
+![](gif_index_preview.gif)
 
-## 功能特点
+[Download APK-Demo](app-debug.apk)
 
- - 支持调节进度.
- - 支持调节速度.
- - 支持设置方向（上下）.
- - 支持设置水波的数量（无上限）.
- - 支持精确定义水波的参数（偏移、拉伸、原始速度）.
- - 支持设置颜色渐变和改变渐变方向.
+## 特性
 
-## 演示
-[下载 APK-Demo](art/app-debug.apk)
-
-### 实战
-
-![](art/gif_index_preview.gif)
+MultiWaveHeader 是一个可以高度定制每一条水波、且随意增加水波数量的 Android 水波开源库。
+从而可以通过使用者自己的创意定制，可以使用在不同的页面场景。
+目前 github 能搜索到的比较流行的水波开源库，如：[tangqi92/WaveLoadingView](https://github.com/tangqi92/WaveLoadingView)、[john990/WaveView](https://github.com/john990/WaveView)、[gelitenight/WaveView](https://github.com/gelitenight/WaveView) 等目前看起来对水波本身的可定制程度不高，都是固定两条水波。
 
 
 ## 控制台
@@ -33,26 +23,27 @@ MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
 
 |顶部|底部|
 |:---:|:---:|
-![](art/gif_console_1.gif)|![](art/gif_console_2.gif)|
+![](gif_console_1.gif)|![](gif_console_2.gif)|
 
 ### 数量
 
 |一对|单一|
 |:---:|:---:|
-![](art/gif_console_3.gif)|![](art/gif_console_4.gif)|
+![](gif_console_3.gif)|![](gif_console_4.gif)|
 
-## 简单用例
+
+## 使用
 #### 1.在 build.gradle 中添加依赖
 ```
-    compile 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-1'
+compile 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-1'
 ```
 
 #### 2.在XML布局文件中添加 MultiWaveHeader
 ```xml
-    <com.scwang.wave.MultiWaveHeader
-        android:id="@+id/waveHeader"
-        android:layout_width="match_parent"
-        android:layout_height="200dp">
+<com.scwang.wave.MultiWaveHeader
+    android:id="@+id/waveHeader"
+    android:layout_width="match_parent"
+    android:layout_height="200dp">
 ```
 
 ## 属性
@@ -98,9 +89,10 @@ MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
         app:mwhWaves="MultiWave">
 ```
 
-## 自定义
+## 精准定制
 
-#### 可以高度定制每一条水波.
+MultiWaveHeader 可以精准定制每一条水波的参数：偏移量、拉伸量、运动速度和方向。
+
 
 ###### java
 ```java
@@ -136,19 +128,5 @@ MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
             220,0,1,1,-15">
 ```
 
-License
--------
 
-    Copyright 2017 scwang90
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+ 
