@@ -54,7 +54,7 @@ MultiWaveHeader is an android wave view that can be highly customized for each w
     <com.scwang.wave.MultiWaveHeader
         android:id="@+id/waveHeader"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="200dp"/>
 ```
 
 ## Property
