@@ -56,7 +56,7 @@ MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
     <com.scwang.wave.MultiWaveHeader
         android:id="@+id/waveHeader"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="200dp"/>
 ```
 
 ## 属性
