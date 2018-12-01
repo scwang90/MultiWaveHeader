@@ -1,4 +1,4 @@
-# 多重水波纹 - MultiWaveHeader
+# MultiWaveHeader
 
 [![License](https://img.shields.io/badge/License%20-Apache%202-337ab7.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![JCenter](https://img.shields.io/badge/%20Jcenter%20-1.0.0-5bc0de.svg)](https://bintray.com/scwang90/maven/MultiWaveHeader/_latestVersion)
@@ -6,46 +6,48 @@
 [![Platform](https://img.shields.io/badge/Platform-Android-f0ad4e.svg)](https://www.android.com)
 [![Author](https://img.shields.io/badge/Author-scwang90-11bbff.svg)](https://github.com/scwang90)
 
-## [English](https://github.com/scwang90/MultiWaveHeader/blob/master/README.md) | 中文
 
-MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
+## English | [中文](https://github.com/scwang90/MultiWaveHeader/blob/master/README.md)
 
-## 功能特点
+MultiWaveHeader is an android wave view that can be highly customized for each wave.
 
- - 支持调节进度.
- - 支持调节速度.
- - 支持设置方向（上下）.
- - 支持设置水波的数量（无上限）.
- - 支持精确定义水波的参数（偏移、拉伸、原始速度）.
- - 支持设置颜色渐变和改变渐变方向.
+## Features
 
-## 演示
+ - Support adjust progress.
+ - Support adjust velocity.
+ - Support adjust direction.
+ - Support adjust waves number.
+ - Support precise customization waves.
+ - Support color gradient and adjust angle.
+
+## Demo
 [Download APK-Demo](art/app-debug.apk)
 
-### 实战
+
+### Practical
 
 ![](art/gif_index_preview.gif)
 
 
-## 控制台
+## Console
 
-### 方向
+### direction
 
-|顶部|底部|
+|top|bottom|
 |:---:|:---:|
 ![](art/gif_console_1.gif)|![](art/gif_console_2.gif)|
 
-|一对|单一|
+|pair|single|
 |:---:|:---:|
 ![](art/gif_console_3.gif)|![](art/gif_console_4.gif)|
 
-## 简单用例
-#### 1.在 build.gradle 中添加依赖
+## Usage
+#### 1.Add a gradle dependency.
 ```
     compile 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-1'
 ```
 
-#### 2.在XML布局文件中添加 MultiWaveHeader
+#### 2.Add MultiWaveHeader in the layout xml.
 ```xml
     <com.scwang.wave.MultiWaveHeader
         android:id="@+id/waveHeader"
@@ -53,9 +55,9 @@ MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
         android:layout_height="200dp">
 ```
 
-## 属性
+## Property
 
-#### 可以配置一些基本的属性.
+#### you can config basic attribute of waves.
 
 ###### java
 ```java
@@ -76,6 +78,7 @@ MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
     waveHeader.start();
     waveHeader.stop();
     waveHeader.isRunning();
+
 ```
 
 ###### xml
@@ -96,9 +99,9 @@ MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
         app:mwhWaves="MultiWave">
 ```
 
-## 自定义
+## Custom
 
-#### 可以高度定制每一条水波.
+#### You can customize each wave with precision.
 
 ###### java
 ```java
@@ -108,7 +111,7 @@ MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
     String[] waves = new String[]{
         "70,25,1.4,1.4,-26",//wave-1:offsetX(dp),offsetY(dp),scaleX,scaleY,velocity(dp/s)
         "100,5,1.4,1.2,15",
-        "420,0,1.15,1,-10",//wave-3:水平偏移(dp),竖直偏移(dp),水平拉伸,竖直拉伸,速度(dp/s)
+        "420,0,1.15,1,-10",//wave-3:offsetX(dp),offsetY(dp),scaleX,scaleY,velocity(dp/s)
         "520,10,1.7,1.5,20",
         "220,0,1,1,-15",
     };
