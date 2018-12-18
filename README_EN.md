@@ -21,8 +21,10 @@ MultiWaveHeader is an android wave view that can be highly customized for each w
  - Support color gradient and adjust angle.
 
 ## Demo
-[Download APK-Demo](art/app-debug.apk)
+[Download APK-Demo](https://github.com/scwang90/MultiWaveHeader/blob/master/art/app-debug.apk?raw=true)
 
+
+![](art/png_apk_rqcode.png)
 
 ### Practical
 
