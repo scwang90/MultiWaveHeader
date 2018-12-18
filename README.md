@@ -20,7 +20,10 @@ MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
  - 支持设置颜色渐变和改变渐变方向.
 
 ## 演示
-[Download APK-Demo](art/app-debug.apk)
+
+[Download APK-Demo](https://github.com/scwang90/MultiWaveHeader/blob/master/art/app-debug.apk?raw=true)
+
+![](art/png_apk_rqcode.png)
 
 ## 每天领红包
 
