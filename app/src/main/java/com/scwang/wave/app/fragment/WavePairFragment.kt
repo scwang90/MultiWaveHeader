@@ -25,12 +25,12 @@ class WavePairFragment : Fragment(), DiscreteSeekBar.OnProgressChangeListener {
         return inflater.inflate(R.layout.fragment_wave_pair, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         StatusBarUtil.immersive(activity)
         StatusBarUtil.setPaddingSmart(context, toolbar)
         toolbar.setNavigationOnClickListener {
-            activity.finish()
+            activity?.finish()
         }
 
         seekAngle.progress = multiWaveHeader.gradientAngle
@@ -47,17 +47,19 @@ class WavePairFragment : Fragment(), DiscreteSeekBar.OnProgressChangeListener {
         seekProgress.setOnProgressChangeListener(this)
         seekAlpha.setOnProgressChangeListener(this)
         seekNumber.setOnProgressChangeListener(this)
-        checkBoxRunning.setOnCheckedChangeListener({_,value->
+        checkBoxRunning.setOnCheckedChangeListener {_,value->
             if (value) {
                 multiWaveHeader.start()
             } else {
                 multiWaveHeader.stop()
             }
-        })
-        checkBoxDirection.setOnCheckedChangeListener({_,value->
+        }
+        checkBoxDirection.setOnCheckedChangeListener{_,value->
             multiWaveHeader.scaleY = if (value) -1f else 1f
-            toolbar.setBackgroundColor(if (value) ContextCompat.getColor(context,R.color.colorPrimary) else 0)
-        })
+            context?.also {
+                toolbar.setBackgroundColor(if (value) ContextCompat.getColor(it, R.color.colorPrimary) else 0)
+            }
+        }
 
         sliderStartColor.addOnColorListener(object : OnColorListener{
             override fun onColorChanged(color: Int) {

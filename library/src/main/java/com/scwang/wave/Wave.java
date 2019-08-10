@@ -6,6 +6,7 @@ import android.graphics.Path;
  * 水波对象
  * Created by SCWANG on 2017/12/11.
  */
+@SuppressWarnings("WeakerAccess")
 class Wave /*extends View*/ {
 
     Path path;          //水波路径
@@ -16,6 +17,7 @@ class Wave /*extends View*/ {
     float velocity;       //水波移动速度（像素/秒）
     private float scaleX;       //水平拉伸比例
     private float scaleY;       //竖直拉伸比例
+    private int curWave;
 //    int startColor;     //开始颜色
 //    int closeColor;     //结束颜色
 //    float alpha;        //颜色透明度
@@ -27,21 +29,18 @@ class Wave /*extends View*/ {
      * @param velocity  移动速度（像素/秒）
      * @param scaleX    水平拉伸量
      * @param scaleY    竖直拉伸量
-     * @param w         波长
-     * @param h         画布高度
      * @param wave      波幅（波宽度）
      */
 //    @SuppressWarnings("PointlessArithmeticExpression")
-    Wave(/*Context context, */int offsetX, int offsetY, int velocity, float scaleX, float scaleY, int w, int h, int wave) {
+    Wave(/*Context context, */int offsetX, int offsetY, int velocity, float scaleX, float scaleY, int wave) {
 //        super(context);
-        this.width = (int) (2 * scaleX * w); //画布宽度（2倍波长）
         this.wave = wave;           //波幅（波宽）
         this.scaleX = scaleX;       //水平拉伸量
         this.scaleY = scaleY;       //竖直拉伸量
         this.offsetX = offsetX;     //水平偏移量
         this.offsetY = offsetY;     //竖直偏移量
         this.velocity = velocity;   //移动速度（像素/秒）
-        this.path = buildWavePath(width, h);
+        this.path = new Path();
     }
 
 //    /*
@@ -73,14 +72,26 @@ class Wave /*extends View*/ {
 //        ta.recycle();
 //    }
 
-    public void updateWavePath(int w, int h, int waveHeight) {
-        this.wave = (wave > 0) ? wave : waveHeight /2;
+    protected void updateWavePath(int w, int h, int waveHeight, boolean fullScreen, float progress) {
+        this.wave = waveHeight;
         this.width = (int) (2* scaleX * w);  //画布宽度（2倍波长）
-        this.path = buildWavePath(width, h);
+        this.path = buildWavePath(width, h, fullScreen, progress);
     }
 
+    protected void updateWavePath(int w, int h, float progress) {
+        int wave = (int) (scaleY * this.wave);//计算拉伸之后的波幅
+        float maxWave = h * Math.max(0, (1 - progress));
+        if (wave > maxWave) {
+            wave = (int)maxWave;
+        }
 
-    private Path buildWavePath(int width, int height) {
+        if (curWave != wave) {
+            this.width = (int) (2 * scaleX * w);  //画布宽度（2倍波长）
+            this.path = buildWavePath(width, h, true, progress);
+        }
+    }
+
+    protected Path buildWavePath(int width, int height, boolean fullScreen, float progress) {
         int DP = Util.dp2px(1);//一个dp在当前设备表示的像素量（水波的绘制精度设为一个dp单位）
         if (DP < 1) {
             DP = 1;
@@ -88,12 +99,24 @@ class Wave /*extends View*/ {
 
         int wave = (int) (scaleY * this.wave);//计算拉伸之后的波幅
 
-        Path path = new Path();
+        if (fullScreen) {
+            float maxWave = height * Math.max(0, (1 - progress));
+            if (wave > maxWave) {
+                wave = (int) maxWave;
+            }
+        }
+        this.curWave = wave;
+
+//        Path path = new Path();
+        path.reset();
+
         path.moveTo(0, 0);
         path.lineTo(0, height - wave);
 
-        for (int x = DP; x < width; x += DP) {
-            path.lineTo(x, height - wave - wave * (float) Math.sin(4.0 * Math.PI * x / width));
+        if (wave > 0) {
+            for (int x = DP; x < width; x += DP) {
+                path.lineTo(x, height - wave - wave * (float) Math.sin(4.0 * Math.PI * x / width));
+            }
         }
 
         path.lineTo(width, height - wave);

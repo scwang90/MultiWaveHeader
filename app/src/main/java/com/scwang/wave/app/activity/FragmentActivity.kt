@@ -49,11 +49,12 @@ class FragmentActivity : AppCompatActivity() {
 
     private fun replaceFragment() {
         try {
-            fragment = fragmentClass.newInstance() as Fragment
+            val fragment = fragmentClass.newInstance() as Fragment
             val manager = supportFragmentManager
             val transaction = manager.beginTransaction()
             transaction.replace(widget_frame, fragment)
             transaction.commit()
+            this.fragment = fragment
         } catch (e: Exception) {
             e.printStackTrace()
             //            AfExceptionHandler.handle(e, "AfFragmentActivity Fragment 类型错误：" + mFragmentClazz);

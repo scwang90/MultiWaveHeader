@@ -11,6 +11,7 @@
         android:id="@+id/multiWaveHeader"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:mwhEnableFullScreen="true"
         app:mwhProgress="0.45">
         <!--<com.scwang.wave.Wave style="@style/MultiWaveHeader.Wave"-->
             <!--app:mwVelocity="100dp"-->

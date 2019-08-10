@@ -46,7 +46,7 @@ MultiWaveHeader is an android wave view that can be highly customized for each w
 ## Usage
 #### 1.Add a gradle dependency.
 ```
-    compile 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-1'
+    compile 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-2'
 ```
 
 #### 2.Add MultiWaveHeader in the layout xml.

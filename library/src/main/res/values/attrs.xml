@@ -10,6 +10,7 @@
         <attr name="mwhStartColor" format="color"/>
         <attr name="mwhCloseColor" format="color"/>
         <attr name="mwhIsRunning" format="boolean"/>
+        <attr name="mwhEnableFullScreen" format="boolean"/>
         <attr name="mwhColorAlpha" format="fraction|float"/>
         <attr name="mwhProgress" format="fraction|float"/>
         <attr name="mwhVelocity" format="fraction|float"/>

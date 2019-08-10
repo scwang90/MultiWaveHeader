@@ -1,5 +1,8 @@
 package com.scwang.wave;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -13,6 +16,8 @@ import android.support.v4.graphics.ColorUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,18 +31,21 @@ import static java.lang.Float.parseFloat;
 @SuppressWarnings("unused")
 public class MultiWaveHeader extends ViewGroup {
 
-    private Paint mPaint = new Paint();
-    private Matrix mMatrix = new Matrix();
-    private List<Wave> mltWave = new ArrayList<>();
-    private int mWaveHeight;
-    private int mStartColor;
-    private int mCloseColor;
-    private int mGradientAngle;
-    private boolean mIsRunning;
-    private float mVelocity;
-    private float mColorAlpha;
-    private float mProgress;
-    private long mLastTime = 0;
+    protected Paint mPaint = new Paint();
+    protected Matrix mMatrix = new Matrix();
+    protected List<Wave> mltWave = new ArrayList<>();
+    protected int mWaveHeight;
+    protected int mStartColor;
+    protected int mCloseColor;
+    protected int mGradientAngle;
+    protected boolean mIsRunning;
+    protected boolean mEnableFullScreen;
+    protected float mVelocity;
+    protected float mColorAlpha;
+    protected float mProgress;
+    protected float mCurProgress;
+    protected long mLastTime = 0;
+    protected ValueAnimator reboundAnimator;
 
     public MultiWaveHeader(Context context) {
         this(context, null, 0);
@@ -58,10 +66,11 @@ public class MultiWaveHeader extends ViewGroup {
         mStartColor = ta.getColor(R.styleable.MultiWaveHeader_mwhStartColor, 0xFF056CD0);
         mCloseColor = ta.getColor(R.styleable.MultiWaveHeader_mwhCloseColor, 0xFF31AFFE);
         mColorAlpha = ta.getFloat(R.styleable.MultiWaveHeader_mwhColorAlpha, 0.45f);
-        mProgress = ta.getFloat(R.styleable.MultiWaveHeader_mwhProgress, 1f);
         mVelocity = ta.getFloat(R.styleable.MultiWaveHeader_mwhVelocity, 1f);
         mGradientAngle = ta.getInt(R.styleable.MultiWaveHeader_mwhGradientAngle, 45);
         mIsRunning = ta.getBoolean(R.styleable.MultiWaveHeader_mwhIsRunning, true);
+        mEnableFullScreen = ta.getBoolean(R.styleable.MultiWaveHeader_mwhEnableFullScreen, false);
+        mProgress = mCurProgress = ta.getFloat(R.styleable.MultiWaveHeader_mwhProgress, 1f);
 
         if (ta.hasValue(R.styleable.MultiWaveHeader_mwhWaves)) {
             setTag(ta.getString(R.styleable.MultiWaveHeader_mwhWaves));
@@ -95,7 +104,10 @@ public class MultiWaveHeader extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-
+        if (mltWave.isEmpty()) {
+            updateWavePath();
+            updateWavePath(r - l, b - t);
+        }
     }
 
     @Override
@@ -118,18 +130,18 @@ public class MultiWaveHeader extends ViewGroup {
                 if (mLastTime > 0 && wave.velocity != 0) {
                     float offsetX = (wave.offsetX - (wave.velocity * mVelocity * (thisTime - mLastTime) / 1000f));
                     if (-wave.velocity > 0) {
-                        offsetX %= wave.width / 2;
+                        offsetX %= (float) wave.width / 2;
                     } else {
                         while (offsetX < 0) {
-                            offsetX += (wave.width / 2);
+                            offsetX += ((float)wave.width / 2);
                         }
                     }
                     wave.offsetX = offsetX;
-                    mMatrix.setTranslate(offsetX, (1 - mProgress) * height);//wave.offsetX =
-                    canvas.translate(-offsetX, -wave.offsetY - (1 - mProgress) * height);
+                    mMatrix.setTranslate(offsetX, (1 - mCurProgress) * height);//wave.offsetX =
+                    canvas.translate(-offsetX, -wave.offsetY - (1 - mCurProgress) * height);
                 } else{
-                    mMatrix.setTranslate(wave.offsetX, (1 - mProgress) * height);
-                    canvas.translate(-wave.offsetX, -wave.offsetY - (1 - mProgress) * height);
+                    mMatrix.setTranslate(wave.offsetX, (1 - mCurProgress) * height);
+                    canvas.translate(-wave.offsetX, -wave.offsetY - (1 - mCurProgress) * height);
                 }
                 mPaint.getShader().setLocalMatrix(mMatrix);
                 canvas.drawPath(wave.path, mPaint);
@@ -147,25 +159,16 @@ public class MultiWaveHeader extends ViewGroup {
         int closeColor = ColorUtils.setAlphaComponent(mCloseColor, (int)(mColorAlpha*255));
         //noinspection UnnecessaryLocalVariable
         double w = width;
-        double h = height * mProgress;
+        double h = height * mCurProgress;
         double r = Math.sqrt(w * w + h * h) / 2;
         double y = r * Math.sin(2 * Math.PI * mGradientAngle / 360);
         double x = r * Math.cos(2 * Math.PI * mGradientAngle / 360);
         mPaint.setShader(new LinearGradient((int)(w/2-x), (int)(h/2-y), (int)(w/2+x), (int)(h/2+y), startColor, closeColor, Shader.TileMode.CLAMP));
     }
 
-    private void updateWavePath(int w, int h) {
-
+    protected void updateWavePath() {
         mltWave.clear();
-
-        /*int count = getChildCount();
-        if (count > 0) {
-            for (int i = 0; i < count; i++) {
-                Wave wave = (Wave) getChildAt(i);
-                wave.updateWavePath(w, h, mWaveHeight);
-                mltWave.add(wave);
-            }
-        } else */if (getTag() instanceof String) {
+        if (getTag() instanceof String) {
             String[] waves = getTag().toString().split("\\s+");
             if ("-1".equals(getTag())) {
                 waves = "70,25,1.4,1.4,-26\n100,5,1.4,1.2,15\n420,0,1.15,1,-10\n520,10,1.7,1.5,20\n220,0,1,1,-15".split("\\s+");
@@ -175,19 +178,72 @@ public class MultiWaveHeader extends ViewGroup {
             for (String wave : waves) {
                 String[] args = wave.split ("\\s*,\\s*");
                 if (args.length == 5) {
-                    mltWave.add(new Wave(/*getContext(),*/Util.dp2px(parseFloat(args[0])), Util.dp2px(parseFloat(args[1])), Util.dp2px(parseFloat(args[4])), parseFloat(args[2]), parseFloat(args[3]), w, h, mWaveHeight/2));
+                    mltWave.add(new Wave(Util.dp2px(parseFloat(args[0])), Util.dp2px(parseFloat(args[1])), Util.dp2px(parseFloat(args[4])), parseFloat(args[2]), parseFloat(args[3]), mWaveHeight/2));
                 }
             }
         } else {
-            mltWave.add(new Wave(/*getContext(),*/Util.dp2px(50), Util.dp2px(0), Util.dp2px(5), 1.7f, 2f, w, h, mWaveHeight/2));
+            mltWave.add(new Wave(Util.dp2px(50), Util.dp2px(0), Util.dp2px(5), 1.7f, 2f, mWaveHeight / 2));
         }
-
     }
 
+
+    protected void updateWavePath(int w, int h) {
+        for (Wave wave : mltWave) {
+            wave.updateWavePath(w, h, mWaveHeight / 2, mEnableFullScreen, mCurProgress);
+        }
+    }
+
+    /**
+     * 执行回弹动画
+     * @param progress 目标值
+     * @param interpolator 加速器
+     * @param duration 时长
+     */
+    protected void animProgress(float progress, Interpolator interpolator, int duration) {
+        if (mCurProgress != progress) {
+            if (reboundAnimator != null) {
+                reboundAnimator.cancel();
+            }
+            reboundAnimator = ValueAnimator.ofFloat(mCurProgress, progress);
+            reboundAnimator.setDuration(duration);
+            reboundAnimator.setInterpolator(interpolator);
+            reboundAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    reboundAnimator = null;
+                }
+            });
+            reboundAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    updateProgress((float)animation.getAnimatedValue());
+                }
+            });
+            reboundAnimator.start();
+        }
+    }
+
+
+    protected void updateProgress(float progress) {
+        View thisView = this;
+        mCurProgress = progress;
+        updateLinearGradient(thisView.getWidth(), thisView.getHeight());
+        if (mEnableFullScreen) {
+            for (Wave wave : mltWave) {
+                wave.updateWavePath(thisView.getWidth(), thisView.getHeight(), mCurProgress);
+            }
+        }
+        if (!mIsRunning) {
+            invalidate();
+        }
+    }
+
+    //<editor-fold desc="method api">
     public void setWaves(String waves) {
         setTag(waves);
         if (mLastTime > 0) {
             View thisView = this;
+            updateWavePath();
             updateWavePath(thisView.getWidth(), thisView.getHeight());
         }
     }
@@ -218,10 +274,16 @@ public class MultiWaveHeader extends ViewGroup {
 
     public void setProgress(float progress) {
         this.mProgress = progress;
-        if (mPaint != null) {
-            View thisView = this;
-            updateLinearGradient(thisView.getWidth(), thisView.getHeight());
+        if (!mIsRunning) {
+            updateProgress(progress);
+        } else {
+            animProgress(progress, new DecelerateInterpolator(), 300);
         }
+    }
+
+    public void setProgress(float progress, Interpolator interpolator, int duration) {
+        this.mProgress = progress;
+        animProgress(progress, new DecelerateInterpolator(), duration);
     }
 
     public int getGradientAngle() {
@@ -297,4 +359,14 @@ public class MultiWaveHeader extends ViewGroup {
     public boolean isRunning() {
         return mIsRunning;
     }
+
+    public void setEnableFullScreen(boolean fullScreen) {
+        this.mEnableFullScreen = fullScreen;
+    }
+
+    public boolean isEnableFullScreen() {
+        return mEnableFullScreen;
+    }
+
+    //</editor-fold>
 }
