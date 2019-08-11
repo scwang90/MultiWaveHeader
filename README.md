@@ -51,7 +51,11 @@ MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
 ## 简单用例
 #### 1.在 build.gradle 中添加依赖
 ```
-    compile 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-2'
+    implementation 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-3'
+
+    //androidx
+    implementation 'com.scwang.wave:MultiWaveHeader:1.0.0-andx-3'
+
 ```
 
 #### 2.在XML布局文件中添加 MultiWaveHeader
