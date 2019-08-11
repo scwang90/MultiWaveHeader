@@ -147,6 +147,10 @@ MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
             220,0,1,1,-15">
 ```
 
+## 其他作品
+[SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout)  
+[SmartRefreshHorizontal](https://github.com/scwang90/SmartRefreshHorizontal)
+
 License
 -------
 
