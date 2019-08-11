@@ -3,7 +3,7 @@ package com.scwang.wave.app.activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.scwang.wave.app.R
-import com.scwang.wave.app.fragment.WavePairFragment
+import com.scwang.wave.app.fragment.WaveConsoleFragment
 import com.scwang.wave.app.util.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_user_login.*
 
@@ -18,7 +18,7 @@ class UserLoginActivity : AppCompatActivity() {
 
         login.setOnClickListener {
 //            startActivity(Intent(this, MainActivity::class.java))
-            FragmentActivity.start(this, WavePairFragment::class.java)
+            FragmentActivity.start(this, WaveConsoleFragment::class.java)
         }
 
     }

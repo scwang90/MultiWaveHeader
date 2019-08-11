@@ -9,6 +9,8 @@ import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
 import android.graphics.Shader;
 import android.support.annotation.ColorRes;
 import android.support.annotation.Nullable;
@@ -31,9 +33,12 @@ import static java.lang.Float.parseFloat;
 @SuppressWarnings("unused")
 public class MultiWaveHeader extends ViewGroup {
 
+    protected Path mPath;
+    protected ShapeType mShape = ShapeType.Rect;
     protected Paint mPaint = new Paint();
     protected Matrix mMatrix = new Matrix();
     protected List<Wave> mltWave = new ArrayList<>();
+    protected float mCornerRadius;
     protected int mWaveHeight;
     protected int mStartColor;
     protected int mCloseColor;
@@ -70,6 +75,8 @@ public class MultiWaveHeader extends ViewGroup {
         mGradientAngle = ta.getInt(R.styleable.MultiWaveHeader_mwhGradientAngle, 45);
         mIsRunning = ta.getBoolean(R.styleable.MultiWaveHeader_mwhIsRunning, true);
         mEnableFullScreen = ta.getBoolean(R.styleable.MultiWaveHeader_mwhEnableFullScreen, false);
+        mCornerRadius = ta.getDimensionPixelOffset(R.styleable.MultiWaveHeader_mwhCornerRadius, Util.dp2px(25));
+        mShape = ShapeType.values()[ta.getInt(R.styleable.MultiWaveHeader_mwhShape, mShape.ordinal())];
         mProgress = mCurProgress = ta.getFloat(R.styleable.MultiWaveHeader_mwhProgress, 1f);
 
         if (ta.hasValue(R.styleable.MultiWaveHeader_mwhWaves)) {
@@ -113,6 +120,7 @@ public class MultiWaveHeader extends ViewGroup {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+        updateShapePath();
         updateWavePath(w, h);
         updateLinearGradient(w, h);
     }
@@ -120,7 +128,13 @@ public class MultiWaveHeader extends ViewGroup {
     @Override
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (mltWave.size() > 0 && mPaint != null) {
+        if (mltWave.size() > 0) {
+
+            if (mPath != null) {
+                canvas.save();
+                canvas.clipPath(mPath);
+            }
+
             View thisView = this;
             int height = thisView.getHeight();
             long thisTime = System.currentTimeMillis();
@@ -148,9 +162,14 @@ public class MultiWaveHeader extends ViewGroup {
                 canvas.restore();
             }
             mLastTime = thisTime;
-        }
-        if (mIsRunning) {
-            invalidate();
+
+            if (mPath != null) {
+                canvas.restore();
+            }
+
+            if (mIsRunning) {
+                invalidate();
+            }
         }
     }
 
@@ -164,6 +183,26 @@ public class MultiWaveHeader extends ViewGroup {
         double y = r * Math.sin(2 * Math.PI * mGradientAngle / 360);
         double x = r * Math.cos(2 * Math.PI * mGradientAngle / 360);
         mPaint.setShader(new LinearGradient((int)(w/2-x), (int)(h/2-y), (int)(w/2+x), (int)(h/2+y), startColor, closeColor, Shader.TileMode.CLAMP));
+    }
+
+
+    protected void updateShapePath() {
+        View thisView = this;
+        int w = thisView.getWidth();
+        int h = thisView.getHeight();
+        if (w > 0 && h > 0 && mShape != null && mShape != ShapeType.Rect) {
+            mPath = new Path();
+            switch (mShape) {
+                case RoundRect:
+                    mPath.addRoundRect(new RectF(0, 0, w, h), mCornerRadius, mCornerRadius, Path.Direction.CW);
+                    break;
+                case Oval:
+                    mPath.addOval(new RectF(0, 0, w, h), Path.Direction.CW);
+                    break;
+            }
+        } else {
+            mPath = null;
+        }
     }
 
     protected void updateWavePath() {
@@ -366,6 +405,15 @@ public class MultiWaveHeader extends ViewGroup {
 
     public boolean isEnableFullScreen() {
         return mEnableFullScreen;
+    }
+
+    public void setShape(ShapeType shape) {
+        this.mShape = shape;
+        updateShapePath();
+    }
+
+    public ShapeType getShape() {
+        return mShape;
     }
 
     //</editor-fold>

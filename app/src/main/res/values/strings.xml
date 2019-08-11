@@ -16,6 +16,21 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="fragment_wave_pair">Wave Console</string>
+    <string name="fragment_wave_console">Wave Console</string>
+    <string name="console_toggle">Toggle:</string>
+    <string name="console_toggle_direction">up side down</string>
+    <string name="console_toggle_running">running</string>
+    <string name="console_shape">Shape:</string>
+    <string name="console_shape_rect">rect</string>
+    <string name="console_shape_round">roundRect</string>
+    <string name="console_shape_oval">oval</string>
+    <string name="console_number">Number:</string>
+    <string name="console_wave">Wave:</string>
+    <string name="console_angle">Angle:</string>
+    <string name="console_alpha">Alpha:</string>
+    <string name="console_velocity">Velocity:</string>
+    <string name="console_progress">Progress:</string>
+    <string name="console_start_color">StartColor:</string>
+    <string name="console_close_color">CloseColor:</string>
 
 </resources>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragment.WavePairFragment">
+    tools:context=".fragment.WaveConsoleFragment">
 
     <com.scwang.wave.MultiWaveHeader
         android:id="@+id/multiWaveHeader"
@@ -33,25 +33,51 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
             <TextView style="@style/AppTheme.Label"
-                android:text="Toggle:"/>
+                android:text="@string/console_toggle"/>
             <CheckBox
                 android:id="@+id/checkBoxDirection"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="up side down"/>
+                android:text="@string/console_toggle_direction"/>
             <CheckBox
                 android:id="@+id/checkBoxRunning"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="running"/>
+                android:text="@string/console_toggle_running"/>
         </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView style="@style/AppTheme.Label"
+                android:text="@string/console_shape"/>
+            <RadioButton
+                android:id="@+id/radioRect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/console_shape_rect"/>
+            <RadioButton
+                android:id="@+id/radioRoundRect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/console_shape_round"/>
+            <RadioButton
+                android:id="@+id/radioOval"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/console_shape_oval"/>
+        </RadioGroup>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
             <TextView style="@style/AppTheme.Label"
-                android:text="Number:"/>
+                android:text="@string/console_number"/>
             <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
                 android:id="@+id/seekNumber"
                 android:layout_width="match_parent"
@@ -68,7 +94,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
             <TextView style="@style/AppTheme.Label"
-                android:text="Wave:"/>
+                android:text="@string/console_wave"/>
             <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
                 android:id="@+id/seekWave"
                 android:layout_width="match_parent"
@@ -85,7 +111,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
             <TextView style="@style/AppTheme.Label"
-                android:text="Angle:"/>
+                android:text="@string/console_angle"/>
             <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
                 android:id="@+id/seekAngle"
                 android:layout_width="match_parent"
@@ -102,7 +128,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
             <TextView style="@style/AppTheme.Label"
-                android:text="Alpha:"/>
+                android:text="@string/console_alpha"/>
             <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
                 android:id="@+id/seekAlpha"
                 android:layout_width="match_parent"
@@ -119,7 +145,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
             <TextView style="@style/AppTheme.Label"
-                android:text="Velocity:"/>
+                android:text="@string/console_velocity"/>
             <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
                 android:id="@+id/seekVelocity"
                 android:layout_width="match_parent"
@@ -136,7 +162,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
             <TextView style="@style/AppTheme.Label"
-                android:text="Progress:"/>
+                android:text="@string/console_progress"/>
             <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
                 android:id="@+id/seekProgress"
                 android:layout_width="match_parent"
@@ -152,7 +178,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
             <TextView style="@style/AppTheme.Label"
-                android:text="StartColor:"/>
+                android:text="@string/console_start_color"/>
             <com.larswerkman.lobsterpicker.sliders.LobsterShadeSlider
                 android:id="@+id/sliderStartColor"
                 android:layout_width="match_parent"
@@ -163,7 +189,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
             <TextView style="@style/AppTheme.Label"
-                android:text="CloseColor:"/>
+                android:text="@string/console_close_color"/>
             <com.larswerkman.lobsterpicker.sliders.LobsterShadeSlider
                 android:id="@+id/sliderCloseColor"
                 android:layout_width="match_parent"
@@ -173,7 +199,7 @@
 
     <android.support.v7.widget.Toolbar style="@style/AppTheme.Toolbar"
         android:id="@+id/toolbar"
-        app:title="@string/fragment_wave_pair"
+        app:title="@string/fragment_wave_console"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:contentInsetStartWithNavigation="0dp"
         android:background="@color/transparent"/>

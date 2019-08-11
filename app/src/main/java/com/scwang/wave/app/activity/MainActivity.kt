@@ -7,16 +7,16 @@ import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.scwang.wave.app.R
-import com.scwang.wave.app.fragment.WavePairFragment
+import com.scwang.wave.app.fragment.WaveConsoleFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.reflect.KClass
 
 class MainActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
 
     enum class Tabs(val menuId: Int, val clazz: KClass<out Fragment>) {
-        WavePair(R.id.navigation_home, WavePairFragment::class),
-        Wave(R.id.navigation_dashboard, WavePairFragment::class),
-        Wave2(R.id.navigation_notifications, WavePairFragment::class),
+        WavePair(R.id.navigation_home, WaveConsoleFragment::class),
+        Wave(R.id.navigation_dashboard, WaveConsoleFragment::class),
+        Wave2(R.id.navigation_notifications, WaveConsoleFragment::class),
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
