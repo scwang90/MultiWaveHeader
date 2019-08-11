@@ -106,7 +106,7 @@ MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
         app:mwhColorAlpha="0.45"
         app:mwhStartColor="@color/colorPrimaryDark"
         app:mwhCloseColor="@color/colorPrimaryLight"
-        app:mwhWaves="MultiWave">
+        app:mwhWaves="MultiWave"/>
 ```
 
 ## 自定义
@@ -116,7 +116,6 @@ MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
 ###### java
 ```java
     MultiWaveHeader waveHeader = findViewById(R.id.waveHeader);
-
 
     String[] waves = new String[]{
         "70,25,1.4,1.4,-26",//wave-1:offsetX(dp),offsetY(dp),scaleX,scaleY,velocity(dp/s)
@@ -144,7 +143,7 @@ MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
             100,5,1.4,1.2,15
             420,0,1.15,1,-10
             520,10,1.7,1.5,20
-            220,0,1,1,-15">
+            220,0,1,1,-15"/>
 ```
 
 ## 其他作品

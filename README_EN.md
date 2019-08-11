@@ -98,7 +98,7 @@ MultiWaveHeader is an android wave view that can be highly customized for each w
         app:mwhColorAlpha="0.45"
         app:mwhStartColor="@color/colorPrimaryDark"
         app:mwhCloseColor="@color/colorPrimaryLight"
-        app:mwhWaves="MultiWave">
+        app:mwhWaves="MultiWave"/>
 ```
 
 ## Custom
@@ -108,7 +108,6 @@ MultiWaveHeader is an android wave view that can be highly customized for each w
 ###### java
 ```java
     MultiWaveHeader waveHeader = findViewById(R.id.waveHeader);
-
 
     String[] waves = new String[]{
         "70,25,1.4,1.4,-26",//wave-1:offsetX(dp),offsetY(dp),scaleX,scaleY,velocity(dp/s)
@@ -136,7 +135,7 @@ MultiWaveHeader is an android wave view that can be highly customized for each w
             100,5,1.4,1.2,15
             420,0,1.15,1,-10
             520,10,1.7,1.5,20
-            220,0,1,1,-15">
+            220,0,1,1,-15"/>
 ```
 
 License
