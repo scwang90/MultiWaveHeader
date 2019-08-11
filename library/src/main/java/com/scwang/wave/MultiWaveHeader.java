@@ -127,7 +127,7 @@ public class MultiWaveHeader extends ViewGroup {
             for (Wave wave : mltWave) {
                 mMatrix.reset();
                 canvas.save();
-                if (mLastTime > 0 && wave.velocity != 0) {
+                if (mIsRunning && mLastTime > 0 && wave.velocity != 0) {
                     float offsetX = (wave.offsetX - (wave.velocity * mVelocity * (thisTime - mLastTime) / 1000f));
                     if (-wave.velocity > 0) {
                         offsetX %= (float) wave.width / 2;
