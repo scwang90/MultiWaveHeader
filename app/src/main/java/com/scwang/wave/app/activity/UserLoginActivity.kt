@@ -1,7 +1,7 @@
 package com.scwang.wave.app.activity
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.scwang.wave.app.R
 import com.scwang.wave.app.fragment.WaveConsoleFragment
 import com.scwang.wave.app.util.StatusBarUtil

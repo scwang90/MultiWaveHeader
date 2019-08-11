@@ -197,7 +197,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <android.support.v7.widget.Toolbar style="@style/AppTheme.Toolbar"
+    <androidx.appcompat.widget.Toolbar style="@style/AppTheme.Toolbar"
         android:id="@+id/toolbar"
         app:title="@string/fragment_wave_console"
         app:navigationIcon="?attr/homeAsUpIndicator"

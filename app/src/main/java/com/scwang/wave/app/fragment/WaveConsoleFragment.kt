@@ -3,8 +3,8 @@ package com.scwang.wave.app.fragment
 
 import android.content.res.Resources
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.core.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +18,7 @@ import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
 /**
  * A simple [Fragment] subclass.
  */
-class WaveConsoleFragment : Fragment(), DiscreteSeekBar.OnProgressChangeListener {
+class WaveConsoleFragment : androidx.fragment.app.Fragment(), DiscreteSeekBar.OnProgressChangeListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

@@ -5,8 +5,8 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.FrameLayout
 import java.util.*
 
@@ -18,7 +18,7 @@ import java.util.*
 class FragmentActivity : AppCompatActivity() {
     //</editor-fold>
 
-    var fragment: Fragment? = null
+    var fragment: androidx.fragment.app.Fragment? = null
         private set
     //</editor-fold>
 
@@ -49,7 +49,7 @@ class FragmentActivity : AppCompatActivity() {
 
     private fun replaceFragment() {
         try {
-            val fragment = fragmentClass.newInstance() as Fragment
+            val fragment = fragmentClass.newInstance() as androidx.fragment.app.Fragment
             val manager = supportFragmentManager
             val transaction = manager.beginTransaction()
             transaction.replace(widget_frame, fragment)
@@ -68,7 +68,7 @@ class FragmentActivity : AppCompatActivity() {
 
         //<editor-fold desc="跳转封装">
         private fun start(context: Context?, clazz: Class<*>, vararg params: Any) {
-            if (context != null && Fragment::class.java.isAssignableFrom(clazz)) {
+            if (context != null && androidx.fragment.app.Fragment::class.java.isAssignableFrom(clazz)) {
                 context.startActivity(newIntent(clazz, context, *params))
             }
         }
@@ -77,7 +77,7 @@ class FragmentActivity : AppCompatActivity() {
             start(activity as Context, clazz, *params)
         }
 
-        fun start(fragment: Fragment?, clazz: Class<*>, vararg params: Any) {
+        fun start(fragment: androidx.fragment.app.Fragment?, clazz: Class<*>, vararg params: Any) {
             if (fragment != null) {
                 start(fragment.activity as Context, clazz, *params)
             }
