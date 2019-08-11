@@ -23,17 +23,17 @@ MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
 
 [Download APK-Demo](https://github.com/scwang90/MultiWaveHeader/blob/master/art/app-debug.apk?raw=true)
 
-![](art/png_apk_rqcode.png)
+![](https://github.com/scwang90/MultiWaveHeader/blob/master/art/png_apk_rqcode.png)
 
 ## 每天领红包
 
 最近开通了支付宝商家，生成了个红包二维码，经常用支付宝的童鞋可有扫码领优惠红包，扫码只会拿红包，不会有任何损失，每天都可以扫码哦！
 
-![支付宝红包](art/pay_alipay_red_packet.png)
+![支付宝红包](https://github.com/scwang90/MultiWaveHeader/blob/master/art/pay_alipay_red_packet.png)
 
 ### 实战
 
-![](art/gif_index_preview.gif)
+![](https://github.com/scwang90/MultiWaveHeader/blob/master/art/gif_index_preview.gif)
 
 
 ## 控制台
@@ -42,11 +42,11 @@ MultiWaveHeader 是一个可以高度定制每个波形的Android水波控件。
 
 |顶部|底部|
 |:---:|:---:|
-![](art/gif_console_1.gif)|![](art/gif_console_2.gif)|
+![](https://github.com/scwang90/MultiWaveHeader/blob/master/art/gif_console_1.gif)|![](https://github.com/scwang90/MultiWaveHeader/blob/master/art/gif_console_2.gif)|
 
 |一对|单一|
 |:---:|:---:|
-![](art/gif_console_3.gif)|![](art/gif_console_4.gif)|
+![](https://github.com/scwang90/MultiWaveHeader/blob/master/art/gif_console_3.gif)|![](https://github.com/scwang90/MultiWaveHeader/blob/master/art/gif_console_4.gif)|
 
 ## 简单用例
 #### 1.在 build.gradle 中添加依赖
