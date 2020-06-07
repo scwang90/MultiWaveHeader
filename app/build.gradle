@@ -36,6 +36,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     testImplementation 'junit:junit:4.12'
 
-    implementation project(':library')
-//    implementation 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-0'
+//    implementation project(':library')
+    implementation 'com.scwang.wave:MultiWaveHeader:1.0.0'
 }
